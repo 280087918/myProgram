@@ -1,0 +1,2 @@
+项目要点:
+本项目意指编写一个简单的shiro使用方法，里面内容大致参照shiro-demo的Simple Demo操作的,适用最简单的ini文件配置
