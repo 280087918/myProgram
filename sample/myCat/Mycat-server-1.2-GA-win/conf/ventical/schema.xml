@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://org.opencloudb/">
+
+	<schema name="schema1" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn1"/>
+	<schema name="schema2" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn2"/>
+	<schema name="schema3" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn3"/>
+
+	<dataNode name="dn1" dataHost="datahost1" database="db1" />
+	<dataNode name="dn2" dataHost="datahost1" database="db2" />
+	<dataNode name="dn3" dataHost="datahost1" database="db3" />
+	<!-- 
+	<dataNode name="jdbc_dn1" dataHost="jdbchost" database="db1" />
+	<dataNode name="jdbc_dn2" dataHost="jdbchost" database="db2" />
+	<dataNode name="jdbc_dn3" dataHost="jdbchost" database="db3" />
+ -->
+	<dataHost name="datahost1" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="mysql" dbDriver="native">
+		<heartbeat>select user()</heartbeat>
+		<!-- can have multi write hosts -->
+		<writeHost host="hostM1" url="localhost:3306" user="root" password="111111">
+			<!-- can have multi read hosts -->
+			<!-- <readHost host="hostS1" url="localhost:3306" user="root" password="123456" 
+				/> -->
+		</writeHost>
+		<!-- <writeHost host="hostM2" url="localhost:3316" user="root" password="123456"/> -->
+	</dataHost>
+     <!-- 
+	<dataHost name="jdbchost" maxCon="1000" minCon="10" balance="0"
+		dbType="mysql" dbDriver="jdbc">
+		<heartbeat>select user()</heartbeat>
+		<writeHost host="hostM1" url="jdbc:mysql://localhost:3306"
+			user="root" password="123456">
+		</writeHost>
+	</dataHost>
+	 -->
+</mycat:schema>

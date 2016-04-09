@@ -1,4 +1,4 @@
-package com.john.controller.users;
+package com.john.users.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
