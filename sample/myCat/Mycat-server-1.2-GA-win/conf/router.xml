@@ -17,12 +17,12 @@
 <!DOCTYPE daas:router SYSTEM "router.dtd">
 <mycat:router xmlns:mycat="http://org.opencloudb/">
 
-	<!-- schema is db name which config in schema.xml -->
-	<queryRouter schema="dbtest">
+	<!-- schema is db name which config in schema.xml
+	<queryRouter schema="mycat_main">
 	   <dataNode>
-			<name>dnTest1</name>
-			<queryNode>dnTest1</queryNode>
+			<name>dn1</name>
+			<queryNode>dn1</queryNode>
 		</dataNode>
-	</queryRouter>
+	</queryRouter> -->
 
 </mycat:router>
