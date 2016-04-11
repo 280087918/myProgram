@@ -21,7 +21,12 @@
 	
 	<!-- 这个是包含数据源的连接 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property> 
+		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+		<!-- 这个是普通的数据库连接测试
+        <property name="url"><value>jdbc:mysql://127.0.0.1:3306/mycat0?useUnicode=true&amp;characterEncoding=UTF-8</value></property> 
+        <property name="username"><value>root</value></property>
+        <property name="password"><value>111111</value></property> --> 
+        <!-- 这个是MyCat的连接测试 -->
         <property name="url"><value>jdbc:mysql://127.0.0.1:8066/mycat_main?useUnicode=true&amp;characterEncoding=UTF-8</value></property> 
         <property name="username"><value>test</value></property>
         <property name="password"><value>test</value></property>
