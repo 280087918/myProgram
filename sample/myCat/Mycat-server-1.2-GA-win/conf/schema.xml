@@ -3,8 +3,10 @@
 <mycat:schema xmlns:mycat="http://org.opencloudb/">
 
 	<schema name="mycat_main" checkSQLschema="false" sqlMaxLimit="100">
-		<table name="t_user_ext" dataNode="dn0,dn1,dn2,dn3" rule="rule1">
-			<childTable name="t_user_class_rel" primaryKey="id" joinKey="user_id" parentKey="user_id" />
+		<table name="t_user_ext" dataNode="dn0,dn1" rule="rule1">
+			<childTable name="t_user_class_rel" primaryKey="id" joinKey="user_id" parentKey="user_id">
+				<childTable name="t_user_class_ext" primaryKey="class_id" joinKey="class_ref_id" parentKey="id" />
+			</childTable>
 		</table>
 	</schema>
 

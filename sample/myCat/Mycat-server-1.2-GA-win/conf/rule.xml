@@ -23,7 +23,7 @@
 </tableRule>
 
   <function name="func1" class="org.opencloudb.route.function.PartitionByLong">
-    <property name="partitionCount">4</property>
-    <property name="partitionLength">256</property>
+    <property name="partitionCount">2</property>
+    <property name="partitionLength">512</property>
   </function>
 </mycat:rule>

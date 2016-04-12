@@ -1,3 +1,4 @@
+#insert第一张主表
 INSERT INTO `t_user_ext`(`user_id`,`receive_address`,`create_time`,`province_code`) VALUES ('1', '广州市越秀区广州大道中599号', '2014-07-17 10:53:15', 'GD');
 INSERT INTO `t_user_ext`(`user_id`,`receive_address`,`create_time`,`province_code`) VALUES ('2', '广州市越秀区广州大道中599号', '2014-07-17 10:53:15', 'GD');
 INSERT INTO `t_user_ext`(`user_id`,`receive_address`,`create_time`,`province_code`) VALUES ('3', '广州市越秀区广州大道中599号', '2014-07-17 10:53:15', 'GD');
@@ -515,3 +516,11 @@ INSERT INTO `t_user_ext`(`user_id`,`receive_address`,`create_time`,`province_cod
 INSERT INTO `t_user_ext`(`user_id`,`receive_address`,`create_time`,`province_code`) VALUES ('515', '广州市越秀区广州大道中599号', '2014-07-17 10:53:15', 'GD');
 INSERT INTO `t_user_ext`(`user_id`,`receive_address`,`create_time`,`province_code`) VALUES ('516', '广州市越秀区广州大道中599号', '2014-07-17 10:53:15', 'GD');
 INSERT INTO `t_user_ext`(`user_id`,`receive_address`,`create_time`,`province_code`) VALUES ('517', '广州市越秀区广州大道中599号', '2014-07-17 10:53:15', 'GD');
+
+#insert第一张子表
+INSERT INTO `t_user_class_rel`(`id`,`caller`,`province_code`,`user_id`,`class_id`,`role_type`,`create_time`,`modify_time`) VALUES (1, '调用方', 'GD', '2', '3', '1', '2014-07-17 10:53:15', '2014-07-17 10:53:15');
+INSERT INTO `t_user_class_rel`(`id`,`caller`,`province_code`,`user_id`,`class_id`,`role_type`,`create_time`,`modify_time`) VALUES (2, '调用方', 'GD', '516', '3', '1', '2014-07-17 10:53:15', '2014-07-17 10:53:15');
+
+#insert第二张子表
+INSERT INTO `t_user_class_ext`(`class_id`,`remark`,`class_ref_id`,`create_time`) VALUES(1, '备注1', '1', '2014-07-17 10:53:15');
+INSERT INTO `t_user_class_ext`(`class_id`,`remark`,`class_ref_id`,`create_time`) VALUES(2, '备注1', '2', '2014-07-17 10:53:15');
