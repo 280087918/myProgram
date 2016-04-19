@@ -12,7 +12,7 @@ public class PageVo<T> {
 	private int pageIndex = 1;
 	
 	//分页大小
-	private int pageSize;
+	private int pageSize = 10;
 	
 	//这里不考虑多个字段进行排序的情况
 	private String orderBy;

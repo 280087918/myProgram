@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,7 +60,14 @@ public class ESTemplateTest extends BaseTest {
 	public void pageTest1() {
 		PageVo<Car> page = new PageVo<Car>();
 		Car searcher = new Car();
-		searcher.setBrandName("雪弗兰");
+		searcher.setAreaType("欧美");
+		//searcher.setBrandName("保时捷");
+		//searcher.setProdDateBegin(DateTime.parse("2016-04-18T15:00:00").toDate());
 		carDao.queryPage(page, searcher);
+	}
+	
+	@Test
+	public void test2() {
+		log.info("" + DateTime.parse("2016-04-18T15:00:00").toDate());
 	}
 }
