@@ -3,12 +3,14 @@ package com.john.vo;
 import java.util.Date;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 @Document(indexName="car", type="cn")
 public class Car {
 	private String id;
 	
 	//品牌名称
+	@Field
 	private String brandName;
 	
 	//系列名称

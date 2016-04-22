@@ -20,9 +20,9 @@ public class ESTemplateTest extends BaseTest {
 	@Test//添加单个
 	public void saveSingleTest() {
 		Car car = new Car();
-		car.setId("001");
-		car.setBrandName("雪佛兰");
-		car.setSeries("大黄蜂");
+		car.setId("008");
+		car.setBrandName("东风标志");
+		car.setSeries("2008");
 		car.setAreaType("欧美");
 		car.setProdDate(new Date());
 		
@@ -53,7 +53,7 @@ public class ESTemplateTest extends BaseTest {
 	
 	@Test//删除
 	public void delSingleTest() {
-		carDao.delDocCar("AVQoHvvf4Va0l0grjz8p");
+		carDao.delDocCar("008");
 	}
 	
 	@Test//分页数据查询
