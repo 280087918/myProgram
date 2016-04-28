@@ -21,7 +21,6 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @ToString
 @Document(indexName="book", type="tech")
 public class Book {
-	//id
 	@Id
 	@Field(index=FieldIndex.not_analyzed, store=true)
 	private String id;
