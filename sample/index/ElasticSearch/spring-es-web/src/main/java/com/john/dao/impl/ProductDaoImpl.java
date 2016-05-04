@@ -125,7 +125,7 @@ public class ProductDaoImpl implements ProductDao {
 			SearchResponse resp = reqBuilder.execute().actionGet();  
 	        SearchHit[] hits = resp.getHits().getHits();
 	        
-	      //解析命中数据
+	        //解析命中数据
 	        if(ArrayUtils.isNotEmpty(hits)) {
 	        	products = new ArrayList<Product>();
 	        	Product product = null;

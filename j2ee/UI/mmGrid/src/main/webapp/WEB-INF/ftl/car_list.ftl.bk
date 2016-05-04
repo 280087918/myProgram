@@ -1,0 +1,11 @@
+<table>
+<#if cars??>
+<#list cars as car>
+<tr>
+	<td>${car.model}</td>
+	<td>${car.brand}</td>
+	<td>${car.marketDate?string('yyyy-MM-dd HH:mm:ss')}</td>
+</tr>
+</#list>
+</#if>
+</table>
