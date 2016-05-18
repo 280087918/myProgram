@@ -1,0 +1,19 @@
+2016-05-09 17:16:34,109 [main] INFO  com.john.logback.a.ServiceA - ServiceA log <info>
+2016-05-09 17:16:34,115 [main] WARN  com.john.logback.a.ServiceA - ServiceA log <warn>
+2016-05-09 17:16:34,115 [main] ERROR com.john.logback.a.ServiceA - ServiceA log <error>
+2016-05-09 17:16:34,115 [main] INFO  com.john.logback.b.ServiceB - ServiceB log <info>
+2016-05-09 17:16:34,115 [main] WARN  com.john.logback.b.ServiceB - ServiceB log <warn>
+2016-05-09 17:16:34,115 [main] ERROR com.john.logback.b.ServiceB - ServiceB log <error>
+2016-05-09 18:46:29.786 [main] INFO  ServiceA[ServiceA.java:13] - ServiceA log <info>
+ 2016-05-09 18:46:29.791 [main] WARN  ServiceA[ServiceA.java:15] - ServiceA log <warn>
+ 2016-05-09 18:46:29.791 [main] ERROR ServiceA[ServiceA.java:16] - ServiceA log <error>
+ 2016-05-09 18:46:29.792 [main] INFO  ServiceB[ServiceB.java:10] - ServiceB log <info>
+ 2016-05-09 18:46:29.792 [main] WARN  ServiceB[ServiceB.java:12] - ServiceB log <warn>
+ 2016-05-09 18:46:29.792 [main] ERROR ServiceB[ServiceB.java:13] - ServiceB log <error>
+ 2016-05-09 18:47:07.212 [main] INFO  ServiceA[ServiceA.java:13] - ServiceA log <info>
+ 2016-05-09 18:47:07.217 [main] WARN  ServiceA[ServiceA.java:15] - ServiceA log <warn>
+ 2016-05-09 18:47:07.218 [main] ERROR ServiceA[ServiceA.java:16] - ServiceA log <error>
+ 2016-05-09 18:47:07.218 [main] INFO  ServiceB[ServiceB.java:10] - ServiceB log <info>
+ 2016-05-09 18:47:07.218 [main] WARN  ServiceB[ServiceB.java:12] - ServiceB log <warn>
+ 2016-05-09 18:47:07.219 [main] ERROR ServiceB[ServiceB.java:13] - ServiceB log <error>
+ 

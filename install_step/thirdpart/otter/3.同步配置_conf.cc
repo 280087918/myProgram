@@ -77,9 +77,10 @@ CREATE TABLE `car` (
   Pipeline名字:myPipeline
   Select机器:local
   Load机器:local
+  Canal名字:myCanal
 
 6.添加映射关系
-  在pipeLine列表点击刚床紧挨年的pipeLine ->添加
+  在pipeLine列表点击刚添加的pipeLine ->添加
   源数据表:car
   目标数据表:scar
 
