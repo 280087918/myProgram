@@ -33,19 +33,28 @@ vagrant虚拟机搭建
    ip:127.0.0.1 端口2222
    vagrant/root 密码vagrant
 
-11.起停虚拟机
+11.添加网络ip
+   进入box目录E:\virtual_linux\_vagrant_centos6.4
+   编辑Vagrantfile
+   打开这行注释
+   config.vm.network "public_network"
+
+12.起停虚拟机
    启动:vagrant up
    停止:vagrant halt
    重启:vagrant reload
 
-12.安装完之后查看语言，有可能是其他语言的，我看了一下，就给我装的德语的
+13.安装完之后查看语言，有可能是其他语言的，我看了一下，就给我装的德语的
    查看当前linux系统语言:echo $LANG
    查看系统中有没有中文语言包:locale,如果有zh_CN那么就是有中文语言包
    如果没有，那么就通过yum下载:yum groupinstall chinese-support
    将系统语言修改为中文:
-	Vi  /etc/sysconfig/i18n
+	vi  /etc/sysconfig/i18n
 	LANG="zh_CN.UTF-8"
    修改好之后重启系统
+
+14.做多个虚拟机
+   将box文件copy到一个新的目录，并且从步骤4开始往下配置，则可以得到新的虚拟机
 
 to be continue......
 http://jingyan.baidu.com/album/c1a3101eb2b8dbde656deb32.html?picindex=3
