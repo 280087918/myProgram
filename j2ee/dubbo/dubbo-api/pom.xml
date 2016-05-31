@@ -10,9 +10,16 @@
   <name>dubbo-api</name>
 
   <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
+  	<!-- 不用写getter&setter -->
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.16.8</version>
+	</dependency>
   </dependencies>
   
   <build>

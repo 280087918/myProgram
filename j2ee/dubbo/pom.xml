@@ -10,6 +10,7 @@
 	<name>dubbo-api-server</name>
 
 	<prerequisites>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven>3.0.0</maven>
 	</prerequisites>
 

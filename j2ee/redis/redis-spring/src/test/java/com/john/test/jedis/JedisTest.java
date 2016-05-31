@@ -19,6 +19,13 @@ public class JedisTest extends BaseTest {
 		log.info("value:{}", redisTemplate.opsForValue().get("templateKey002"));
 	}
 	
+	@Test
+	public void del() {
+		log.info("value1:{}", redisTemplate.opsForValue().get("templateKey002"));
+		redisTemplate.delete("templateKey002");
+		log.info("value2:{}", redisTemplate.opsForValue().get("templateKey002"));
+	}
+	
 	@Test//这个可以作为分布式锁的一种使用场景
 	public void test2() {
 		boolean ud = redisTemplate.opsForValue().setIfAbsent("key0524", "测试value1");

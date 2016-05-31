@@ -38,5 +38,11 @@ redis高可用配置
   sentinel failover-timeout ...... --> sentinel failover-timeout mymaster 180000
   #进行故障迁移的时候一次允许有几个从redis与新的主redis进行数据同步
   sentinel parallel-syncs ...... --> sentinel parallel-syncs mymaster 1
+
+7.启动测试
+  任意目录执行
+  redis-server /redis/redis_6379_master.conf &
+  redis-server /redis/redis_6380_slave.conf &
+  redis-sentinel sentinel.conf &
 -----------------------------------------------------------------------------------------------
 以上配置实现了redis高可用的配置，但是说怎么验证？这个接下来想一想办法.to be continue
