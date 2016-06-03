@@ -1,6 +1,8 @@
 1.首先要开启mysql的binlog
   如果不确定开了没有，那么就用navicat->F6，输入show binary logs;
 	如果提示You are not using binary logging,那么就是没开启binlog
+  查看binlog的模式，必须要为ROW。如果不确定，那么F6执行下面的查询语句。
+	show variables like 'binlog_format';
 
 2.开启binlog
   vi /etc/my.ini
