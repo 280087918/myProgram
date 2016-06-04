@@ -3,6 +3,8 @@
 	如果提示You are not using binary logging,那么就是没开启binlog
   查看binlog的模式，必须要为ROW。如果不确定，那么F6执行下面的查询语句。
 	show variables like 'binlog_format';
+  如果不是ROW模式，那么可以通过配置文件修改，也可以直接执行更新语句
+        SET SESSION binlog_format = 'ROW';
 
 2.开启binlog
   vi /etc/my.ini
