@@ -32,9 +32,15 @@
         </rabbit:bindings>
     </rabbit:direct-exchange>
 	
+	<!-- 实现rabbitmq的MessageListener接口
 	<rabbit:listener-container connection-factory="mq-connection-factory" message-converter="jsonMessageConverter">  
-	    <rabbit:listener ref="rabbitmqListener" method="listen" queue-names="hc.ts.queue" />
+	    <rabbit:listener ref="rabbitmqListener" queue-names="hc.ts.queue" />
 	</rabbit:listener-container>
-  
-	<bean id="rabbitmqListener" class="com.john.rabbitmq.RabbitMqListener" />
+	<bean id="rabbitmqListener" class="com.john.rabbitmq.RabbitMqListener" /> -->
+	
+	<!-- 实现rabbitmq的ChannelAwareMessageListener接口,用这个接口因为我使用了手动返回是否接收到消息的标识，需要操作Channel手动返回已接收消息的信号 -->
+	<rabbit:listener-container connection-factory="mq-connection-factory" message-converter="jsonMessageConverter" acknowledge="manual">  
+	    <rabbit:listener ref="rabbitmqListener" method="onMessage" queue-names="hc.ts.queue" />
+	</rabbit:listener-container>
+	<bean id="rabbitmqListener" class="com.john.rabbitmq.RabbitMqListenerWithChannel" />
 </beans>
