@@ -2,258 +2,258 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `otter` /*!40100 DEFAULT CHARACTER SET 
 
 USE `otter`;
 
-CREATE TABLE `ALARM_RULE` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `MONITOR_NAME` varchar(1024) DEFAULT NULL,
-  `RECEIVER_KEY` varchar(1024) DEFAULT NULL,
-  `STATUS` varchar(32) DEFAULT NULL,
-  `PIPELINE_ID` bigint(20) NOT NULL,
-  `DESCRIPTION` varchar(256) DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `MATCH_VALUE` varchar(1024) DEFAULT NULL,
-  `PARAMETERS` text DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `alarm_rule` (
+  `id` BIGINT(20) UNSIGNED not null auto_increment,
+  `monitor_name` VARCHAR(1024) default null,
+  `receiver_key` VARCHAR(1024) default null,
+  `status` VARCHAR(32) default null,
+  `pipeline_id` BIGINT(20) not null,
+  `description` VARCHAR(256) default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  `match_value` VARCHAR(1024) default null,
+  `parameters` TEXT default null,
+  primary key (`id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `AUTOKEEPER_CLUSTER` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `CLUSTER_NAME` varchar(200) NOT NULL,
-  `SERVER_LIST` varchar(1024) NOT NULL,
-  `DESCRIPTION` varchar(200) DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `autokeeper_cluster` (
+  `id` BIGINT(20) not null auto_increment,
+  `cluster_name` VARCHAR(200) not null,
+  `server_list` VARCHAR(1024) not null,
+  `description` VARCHAR(200) default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `CANAL` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(200) DEFAULT NULL,
-  `DESCRIPTION` varchar(200) DEFAULT NULL,
-  `PARAMETERS` text DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `CANALUNIQUE` (`NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `canal` (
+  `id` BIGINT(20) UNSIGNED not null auto_increment,
+  `name` VARCHAR(200) default null,
+  `description` VARCHAR(200) default null,
+  `parameters` TEXT default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key `canalunique` (`name`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `CHANNEL` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(200) DEFAULT NULL,
-  `PARAMETERS` text DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `CHANNELUNIQUE` (`NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `channel` (
+  `id` BIGINT(20) not null auto_increment,
+  `name` VARCHAR(200) not null,
+  `description` VARCHAR(200) default null,
+  `parameters` TEXT default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key `channelunique` (`name`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `COLUMN_PAIR` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SOURCE_COLUMN` varchar(200) DEFAULT NULL,
-  `TARGET_COLUMN` varchar(200) DEFAULT NULL,
-  `DATA_MEDIA_PAIR_ID` bigint(20) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_DATA_MEDIA_PAIR_ID` (`DATA_MEDIA_PAIR_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `column_pair` (
+  `id` BIGINT(20) not null auto_increment,
+  `source_column` VARCHAR(200) default null,
+  `target_column` VARCHAR(200) default null,
+  `data_media_pair_id` BIGINT(20) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_data_media_pair_id` (`data_media_pair_id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `COLUMN_PAIR_GROUP` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DATA_MEDIA_PAIR_ID` bigint(20) NOT NULL,
-  `COLUMN_PAIR_CONTENT` text DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_DATA_MEDIA_PAIR_ID` (`DATA_MEDIA_PAIR_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `column_pair_group` (
+  `id` BIGINT(20) not null auto_increment,
+  `data_media_pair_id` BIGINT(20) not null,
+  `column_pair_content` TEXT default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_data_media_pair_id` (`data_media_pair_id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `DATA_MEDIA` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(200) NOT NULL,
-  `NAMESPACE` varchar(200) NOT NULL,
-  `PROPERTIES` varchar(1000) NOT NULL,
-  `DATA_MEDIA_SOURCE_ID` bigint(20) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `DATAMEDIAUNIQUE` (`NAME`,`NAMESPACE`,`DATA_MEDIA_SOURCE_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `data_media` (
+  `id` BIGINT(20) not null auto_increment,
+  `name` VARCHAR(200) not null,
+  `namespace` VARCHAR(200) not null,
+  `properties` VARCHAR(1000) not null,
+  `data_media_source_id` BIGINT(20) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key `datamediaunique` (`name`,`namespace`,`data_media_source_id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `DATA_MEDIA_PAIR` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `PULLWEIGHT` bigint(20) DEFAULT NULL,
-  `PUSHWEIGHT` bigint(20) DEFAULT NULL,
-  `RESOLVER` text DEFAULT NULL,
-  `FILTER` text DEFAULT NULL,
-  `SOURCE_DATA_MEDIA_ID` bigint(20) DEFAULT NULL,
-  `TARGET_DATA_MEDIA_ID` bigint(20) DEFAULT NULL,
-  `PIPELINE_ID` bigint(20) NOT NULL,
-  `COLUMN_PAIR_MODE` varchar(20) DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_PipelineID` (`PIPELINE_ID`,`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `data_media_pair` (
+  `id` BIGINT(20) not null auto_increment,
+  `pullweight` BIGINT(20) default null,
+  `pushweight` BIGINT(20) default null,
+  `resolver` TEXT default null,
+  `filter` TEXT default null,
+  `source_data_media_id` BIGINT(20) default null,
+  `target_data_media_id` BIGINT(20) default null,
+  `pipeline_id` BIGINT(20) not null,
+  `column_pair_mode` VARCHAR(20) default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_pIPELINEid` (`pipeline_id`,`id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `DATA_MEDIA_SOURCE` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(200) NOT NULL,
-  `TYPE` varchar(20) NOT NULL,
-  `PROPERTIES` varchar(1000) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `DATAMEDIASOURCEUNIQUE` (`NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `data_media_source` (
+  `id` BIGINT(20) not null auto_increment,
+  `name` VARCHAR(200) not null,
+  `type` VARCHAR(20) not null,
+  `properties` VARCHAR(1000) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key `datamediasourceunique` (`name`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `DELAY_STAT` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DELAY_TIME` int(21) NOT NULL,
-  `DELAY_NUMBER` bigint(20) NOT NULL,
-  `PIPELINE_ID` bigint(20) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_PipelineID_GmtModified_ID` (`PIPELINE_ID`,`GMT_MODIFIED`,`ID`),
-  KEY `idx_Pipeline_GmtCreate` (`PIPELINE_ID`,`GMT_CREATE`),
-  KEY `idx_GmtCreate_id` (`GMT_CREATE`,`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `delay_stat` (
+  `id` BIGINT(20) not null auto_increment,
+  `delay_time` INT(21) not null,
+  `delay_number` BIGINT(20) not null,
+  `pipeline_id` BIGINT(20) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_pIPELINEid_gMTmODIFIED_id` (`pipeline_id`,`gmt_modified`,`id`),
+  key `IDX_pIPELINE_gMTcREATE` (`pipeline_id`,`gmt_create`),
+  key `IDX_gMTcREATE_ID` (`gmt_create`,`id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `LOG_RECORD` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NID` varchar(200) DEFAULT NULL,
-  `CHANNEL_ID` varchar(200) NOT NULL,
-  `PIPELINE_ID` varchar(200) NOT NULL,
-  `TITLE` varchar(1000) DEFAULT NULL,
-  `MESSAGE` text DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `pipeline_id_record` (`PIPELINE_ID`),
-  KEY `logRecord_pipelineId` (`PIPELINE_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `log_record` (
+  `id` BIGINT(20) not null auto_increment,
+  `nid` VARCHAR(200) default null,
+  `channel_id` VARCHAR(200) not null,
+  `pipeline_id` VARCHAR(200) not null,
+  `title` VARCHAR(1000) default null,
+  `message` TEXT default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `PIPELINE_ID_RECORD` (`pipeline_id`),
+  key `LOGrECORD_PIPELINEiD` (`pipeline_id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `NODE` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(200) NOT NULL,
-  `IP` varchar(200) NOT NULL,
-  `PORT` bigint(20) NOT NULL,
-  `DESCRIPTION` varchar(200) DEFAULT NULL,
-  `PARAMETERS` text DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `NODEUNIQUE` (`NAME`,`IP`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `node` (
+  `id` BIGINT(20) not null auto_increment,
+  `name` VARCHAR(200) not null,
+  `ip` VARCHAR(200) not null,
+  `port` BIGINT(20) not null,
+  `description` VARCHAR(200) default null,
+  `parameters` TEXT default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key `nodeunique` (`name`,`ip`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `PIPELINE` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(200) DEFAULT NULL,
-  `PARAMETERS` text DEFAULT NULL,
-  `CHANNEL_ID` bigint(20) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `PIPELINEUNIQUE` (`NAME`,`CHANNEL_ID`),
-  KEY `idx_ChannelID` (`CHANNEL_ID`,`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `pipeline` (
+  `id` BIGINT(20) not null auto_increment,
+  `name` VARCHAR(200) not null,
+  `description` VARCHAR(200) default null,
+  `parameters` TEXT default null,
+  `channel_id` BIGINT(20) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key `pipelineunique` (`name`,`channel_id`),
+  key `IDX_cHANNELid` (`channel_id`,`id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `PIPELINE_NODE_RELATION` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NODE_ID` bigint(20) NOT NULL,
-  `PIPELINE_ID` bigint(20) NOT NULL,
-  `LOCATION` varchar(20) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_PipelineID` (`PIPELINE_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `pipeline_node_relation` (
+  `id` BIGINT(20) not null auto_increment,
+  `node_id` BIGINT(20) not null,
+  `pipeline_id` BIGINT(20) not null,
+  `location` VARCHAR(20) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_pIPELINEid` (`pipeline_id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `SYSTEM_PARAMETER` (
-  `ID` bigint(20) unsigned NOT NULL,
-  `VALUE` text DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table `system_parameter` (
+  `id` BIGINT(20) UNSIGNED not null,
+  `value` TEXT default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`)
+) engine=iNNOdb default charset=UTF8;
 
-CREATE TABLE `TABLE_HISTORY_STAT` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `FILE_SIZE` bigint(20) DEFAULT NULL,
-  `FILE_COUNT` bigint(20) DEFAULT NULL,
-  `INSERT_COUNT` bigint(20) DEFAULT NULL,
-  `UPDATE_COUNT` bigint(20) DEFAULT NULL,
-  `DELETE_COUNT` bigint(20) DEFAULT NULL,
-  `DATA_MEDIA_PAIR_ID` bigint(20) DEFAULT NULL,
-  `PIPELINE_ID` bigint(20) DEFAULT NULL,
-  `START_TIME` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `END_TIME` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_DATA_MEDIA_PAIR_ID_END_TIME` (`DATA_MEDIA_PAIR_ID`,`END_TIME`),
-  KEY `idx_GmtCreate_id` (`GMT_CREATE`,`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `table_history_stat` (
+  `id` BIGINT(20) UNSIGNED not null auto_increment,
+  `file_size` BIGINT(20) default null,
+  `file_count` BIGINT(20) default null,
+  `insert_count` BIGINT(20) default null,
+  `update_count` BIGINT(20) default null,
+  `delete_count` BIGINT(20) default null,
+  `data_media_pair_id` BIGINT(20) default null,
+  `pipeline_id` BIGINT(20) default null,
+  `start_time` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `end_time` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_data_media_pair_id_end_time` (`data_media_pair_id`,`end_time`),
+  key `IDX_gMTcREATE_ID` (`gmt_create`,`id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `TABLE_STAT` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `FILE_SIZE` bigint(20) NOT NULL,
-  `FILE_COUNT` bigint(20) NOT NULL,
-  `INSERT_COUNT` bigint(20) NOT NULL,
-  `UPDATE_COUNT` bigint(20) NOT NULL,
-  `DELETE_COUNT` bigint(20) NOT NULL,
-  `DATA_MEDIA_PAIR_ID` bigint(20) NOT NULL,
-  `PIPELINE_ID` bigint(20) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_PipelineID_DataMediaPairID` (`PIPELINE_ID`,`DATA_MEDIA_PAIR_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `table_stat` (
+  `id` BIGINT(20) not null auto_increment,
+  `file_size` BIGINT(20) not null,
+  `file_count` BIGINT(20) not null,
+  `insert_count` BIGINT(20) not null,
+  `update_count` BIGINT(20) not null,
+  `delete_count` BIGINT(20) not null,
+  `data_media_pair_id` BIGINT(20) not null,
+  `pipeline_id` BIGINT(20) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_pIPELINEid_dATAmEDIApAIRid` (`pipeline_id`,`data_media_pair_id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `THROUGHPUT_STAT` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `TYPE` varchar(20) NOT NULL,
-  `NUMBER` bigint(20) NOT NULL,
-  `SIZE` bigint(20) NOT NULL,
-  `PIPELINE_ID` bigint(20) NOT NULL,
-  `START_TIME` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `END_TIME` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `idx_PipelineID_Type_GmtCreate_ID` (`PIPELINE_ID`,`TYPE`,`GMT_CREATE`,`ID`),
-  KEY `idx_PipelineID_Type_EndTime_ID` (`PIPELINE_ID`,`TYPE`,`END_TIME`,`ID`),
-  KEY `idx_GmtCreate_id` (`GMT_CREATE`,`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `throughput_stat` (
+  `id` BIGINT(20) not null auto_increment,
+  `type` VARCHAR(20) not null,
+  `number` BIGINT(20) not null,
+  `size` BIGINT(20) not null,
+  `pipeline_id` BIGINT(20) not null,
+  `start_time` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `end_time` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `IDX_pIPELINEid_tYPE_gMTcREATE_id` (`pipeline_id`,`type`,`gmt_create`,`id`),
+  key `IDX_pIPELINEid_tYPE_eNDtIME_id` (`pipeline_id`,`type`,`end_time`,`id`),
+  key `IDX_gMTcREATE_ID` (`gmt_create`,`id`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE `USER` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `USERNAME` varchar(20) NOT NULL,
-  `PASSWORD` varchar(20) NOT NULL,
-  `AUTHORIZETYPE` varchar(20) NOT NULL,
-  `DEPARTMENT` varchar(20) NOT NULL,
-  `REALNAME` varchar(20) NOT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `USERUNIQUE` (`USERNAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table `user` (
+  `id` BIGINT(20) not null auto_increment,
+  `username` VARCHAR(20) not null,
+  `password` VARCHAR(20) not null,
+  `authorizetype` VARCHAR(20) not null,
+  `department` VARCHAR(20) not null,
+  `realname` VARCHAR(20) not null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  unique key `userunique` (`username`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
-CREATE TABLE  `DATA_MATRIX` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `GROUP_KEY` varchar(200) DEFAULT NULL,
-  `MASTER` varchar(200) DEFAULT NULL,
-  `SLAVE` varchar(200) DEFAULT NULL,
-  `DESCRIPTION` varchar(200) DEFAULT NULL,
-  `GMT_CREATE` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `GMT_MODIFIED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`),
-  KEY `GROUPKEY` (`GROUP_KEY`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table  `data_matrix` (
+  `id` BIGINT(20) not null auto_increment,
+  `group_key` VARCHAR(200) default null,
+  `master` VARCHAR(200) default null,
+  `slave` VARCHAR(200) default null,
+  `description` VARCHAR(200) default null,
+  `gmt_create` TIMESTAMP not null default '0000-00-00 00:00:00',
+  `gmt_modified` TIMESTAMP not null default current_timestamp on update current_timestamp,
+  primary key (`id`),
+  key `groupkey` (`group_key`)
+) engine=iNNOdb auto_increment=1 default charset=UTF8;
 
 
-insert into USER(ID,USERNAME,PASSWORD,AUTHORIZETYPE,DEPARTMENT,REALNAME,GMT_CREATE,GMT_MODIFIED) values(null,'admin','801fc357a5a74743894a','ADMIN','admin','admin',now(),now());
-insert into USER(ID,USERNAME,PASSWORD,AUTHORIZETYPE,DEPARTMENT,REALNAME,GMT_CREATE,GMT_MODIFIED) values(null,'guest','471e02a154a2121dc577','OPERATOR','guest','guest',now(),now());
+insert into user(ID,USERNAME,PASSWORD,AUTHORIZETYPE,DEPARTMENT,REALNAME,GMT_CREATE,GMT_MODIFIED) values(null,'admin','801fc357a5a74743894a','ADMIN','admin','admin',now(),now());
+insert into user(ID,USERNAME,PASSWORD,AUTHORIZETYPE,DEPARTMENT,REALNAME,GMT_CREATE,GMT_MODIFIED) values(null,'guest','471e02a154a2121dc577','OPERATOR','guest','guest',now(),now());

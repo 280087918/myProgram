@@ -1,4 +1,4 @@
-package com.john.test.simple;
+package com.john.test.a.simple;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;

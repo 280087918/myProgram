@@ -22,19 +22,19 @@
 		</property>
 	</bean>
 	
-	<!-- 队列声明
-	<rabbit:queue id="hc.ts.queue" name="hc.ts.queue" durable="true" auto-delete="false" exclusive="false"/> -->
+	<!-- 队列声明 -->
+	<rabbit:queue id="hc.ts.queue" name="hc.ts.queue" durable="true" auto-delete="false" exclusive="false"/>
 	
-	<!-- exchange与队列的绑定
+	<!-- exchange与队列的绑定 -->
 	<rabbit:direct-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false">
         <rabbit:bindings>
-            <rabbit:binding exchange="my-mq-exchange" key="wms.stock.currentNum" />
+            <rabbit:binding queue="hc.ts.queue" key="wms.stock.currentNum" />
         </rabbit:bindings>
-    </rabbit:direct-exchange> -->
-    <rabbit:direct-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false" />
+    </rabbit:direct-exchange>
 	
-	<!-- spring-rabbit-template声明 -->
-	<!-- 如果不在这里指定routing-key那么就在template发送的时候指定routing-key -->
-	<rabbit:template connection-factory="mq-connection-factory" message-converter="jsonMessageConverter" 
-		id="amqpTemplate" exchange="my-mq-exchange" routing-key="wms.stock.currentNum"/>
+	<rabbit:listener-container connection-factory="mq-connection-factory" message-converter="jsonMessageConverter">  
+	    <rabbit:listener ref="rabbitmqListener" method="listen" queue-names="hc.ts.queue" />
+	</rabbit:listener-container>
+  
+	<bean id="rabbitmqListener" class="com.john.rabbitmq.RabbitMqListener" />
 </beans>

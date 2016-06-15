@@ -17,7 +17,7 @@ public class JedisTest extends BaseTest {
 	@Before
 	public void init() {
 		//连接redis服务器，127.0.0.1:6379
-		jedis = new Jedis("127.0.0.1", 6379);
+		jedis = new Jedis("192.168.1.84", 6379);
 	}
 	
 	@Test//存储字符串
@@ -28,8 +28,8 @@ public class JedisTest extends BaseTest {
 		jedis.append("name", " 好运常在");//追加值
 		log.info("name:{}", jedis.get("name"));
 		
-		jedis.del("name");//删除键值
-		log.info("name:{}", jedis.get("name"));
+		//jedis.del("name");//删除键值
+		//log.info("name:{}", jedis.get("name"));
 	}
 	
 	@Test//测试map
