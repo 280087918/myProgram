@@ -21,7 +21,7 @@ http://www.cnblogs.com/shanyou/p/3902905.html
   cd /usr/local/otp_src_18.3
   ./configure
   make
-  make && install
+  make install
 
 3.测试erlang有没有正确安装
   首先mysql的命令结束符是";"，erlang命令的结束符是"."

@@ -66,6 +66,8 @@ yum -y remove mysql-*
 问题解决，mysql启动成功
 
 12.新增用root密码
+ 新的版本在rpm安装完的时候会有个提示说，密码在这个文件里面/root/.mysql_secret
+
  /usr/bin/mysqladmin -u root password root(初始是新增的,‘root’是密码)
  这个是用安装的client登录mysql,命令:mysql -u root -p
 
@@ -82,13 +84,21 @@ yum -y remove mysql-*
 	mysql> quit
 	# /etc/init.d/mysql restart
 	# mysql -u root -p  
-	Enter password: <输入新设的密码newpassword> 
-14.开启root的对外ip访问权限
+	Enter password: <输入新设的密码newpassword>
+
+       如果遇到提示:You must SET PASSWORD before executing this statement
+       那么执行:SET PASSWORD = PASSWORD('111111');
+       FLUSH PRIVILEGES;
+       然后再修改密码
+       UPDATE mysql.user SET Password=PASSWORD('111111') where USER='root';
+       FLUSH PRIVILEGES;
+
+15.开启root的对外ip访问权限
   grant all privileges on *.* to 创建的用户名(root) @"%" identified by "密码";
   如:grant all privileges on *.* to root@"%" identified by 'ffzx2016';
   flush privileges;
 
-15.如果是用rpm安装的mysql，在/etc下面是没有my.cnf这个文件的,my.cnf是用来调整mysql的参数，占用内存什么的
+16.如果是用rpm安装的mysql，在/etc下面是没有my.cnf这个文件的,my.cnf是用来调整mysql的参数，占用内存什么的
    a.进入cd /usr/share/mysql
    b.找到my-large.cnf...my-small.cnf找一个大概符合需求的，将它复制到/etc文件夹下面
    cp -rv my-small.cnf /etc
@@ -96,10 +106,12 @@ yum -y remove mysql-*
    rename 'my-small' 'my' my-small.cnf
    d.给文件赋权限
    chmod 755 my.cnf
-16 如果客户端连接不通
+17 如果客户端连接不通
     查看防火墙信息：
 	#/etc/init.d/iptables status
-	关闭防火墙服务：
-	#/etc/init.d/iptables stop
-	永久关闭？不知道怎么个永久法：
-	#chkconfig -level 35 iptables off
+	起停防火墙，即时生效，重启后失效:
+	service iptables start
+	service iptables stop
+	起停防火墙，重启后生效:
+	chkconfig iptables on
+	chkconfig iptables off
