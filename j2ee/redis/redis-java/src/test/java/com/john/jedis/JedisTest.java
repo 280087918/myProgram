@@ -17,7 +17,7 @@ public class JedisTest extends BaseTest {
 	@Before
 	public void init() {
 		//连接redis服务器，127.0.0.1:6379
-		jedis = new Jedis("192.168.1.84", 6379);
+		jedis = new Jedis("192.168.1.78", 6380);
 	}
 	
 	@Test//存储字符串
@@ -78,5 +78,20 @@ public class JedisTest extends BaseTest {
 		log.info("‘某某’是否在集合中:{}", jedis.sismember("user", "某某"));
 		log.info("随机抽取一个用户:{}", jedis.srandmember("user"));
 		log.info("集合大小【{}】", jedis.scard("user"));
+	}
+	
+	@Test
+	public void test1() {
+		jedis.auth("ffzx6102");
+		jedis.select(11);//选择指定数据库
+		jedis.set("ffzx:key001", "value001");
+		System.out.println(jedis.get("ffzx:key001"));
+	}
+	
+	@Test
+	public void testDel() {
+		jedis.auth("ffzx6102");
+		jedis.select(11);
+		jedis.del("ffzx:key001");
 	}
 }

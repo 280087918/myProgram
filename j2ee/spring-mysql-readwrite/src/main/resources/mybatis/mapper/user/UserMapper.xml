@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.john.user.dao.UserMapper">
+	<resultMap id="userRm" type="com.john.user.vo.UserVo">
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+		<result property="age" column="age" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<sql id="cols">
+		id, name, age
+	</sql>
+	
+	<!-- 保存用户 -->
+	<insert id="saveUser">
+		insert into tbl_user(`id`, `name`, `age`) values(#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})
+	</insert>
+	
+	<!-- 查询用户集合 -->
+	<select id="queryUsers" resultMap="userRm">
+		select <include refid="cols" /> from tbl_user where 1=1
+	</select>
+	
+	<!-- 根据条件查询用户 -->
+	<select id="findById" resultMap="userRm">
+		select <include refid="cols" /> from tbl_user where id=#{id}
+	</select>
+</mapper>

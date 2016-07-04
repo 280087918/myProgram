@@ -14,6 +14,15 @@ public class CarVo {
 	
 	//型号
 	private String model;
+	
+	public CarVo(){
+		super();
+	}
+	public CarVo(String id, String name, String model) {
+		this.id = id;
+		this.name = name;
+		this.model = model;
+	}
 
 	public String getId() {
 		return id;

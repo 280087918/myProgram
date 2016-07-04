@@ -10,4 +10,6 @@ public interface AreaApi {
 	 * @return
 	 */
 	public List<AreaDto> listAreas();
+	
+	public List<AreaDto> listAreas(Integer i);
 }

@@ -14,4 +14,9 @@ public class AreaApiTest extends BasicTest {
 	public void test1() {
 		log.info("::" + areaApi.listAreas());
 	}
+	
+	@Test
+	public void test2() {
+		log.info("::" + areaApi.listAreas(3));
+	}
 }

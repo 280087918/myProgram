@@ -8,4 +8,6 @@ public interface CarService {
 	public void saveCar(CarVo carVo);
 	
 	public List<CarVo> listCars();
+	
+	public void rollbackCar(CarVo carVo) throws Exception ;
 }

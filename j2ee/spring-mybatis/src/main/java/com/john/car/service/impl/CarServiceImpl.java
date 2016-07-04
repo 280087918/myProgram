@@ -9,14 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.john.car.dao.CarDaoMapper;
 import com.john.car.service.CarService;
 import com.john.car.vo.CarVo;
+import com.john.utils.MyException;
 
 @Service
-@Transactional
 public class CarServiceImpl implements CarService {
 	@Autowired
 	private CarDaoMapper carDao;
 	
 	@Override
+	@Transactional
 	public void saveCar(CarVo carVo) {
 		carDao.saveCar(carVo);
 	}
@@ -24,5 +25,16 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<CarVo> listCars() {
 		return carDao.queryCars();
+	}
+	
+	@Override
+	@Transactional(rollbackFor=MyException.class)
+	public void rollbackCar(CarVo carVo) throws Exception {
+		
+		carDao.saveCar(carVo);
+		
+		if(carVo.getModel().equals("甲壳虫")) {
+			throw new MyException("不能存甲壳虫");
+		}
 	}
 }
