@@ -25,4 +25,9 @@
 	<select id="findById" resultMap="userRm">
 		select <include refid="cols" /> from tbl_user where id=#{id}
 	</select>
+	
+	<!-- 更新数据 -->
+	<update id="udUserAge">
+		update tbl_user u set u.age=#{age} where u.id=#{id}
+	</update>
 </mapper>

@@ -17,7 +17,7 @@ public class EmitLog {
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("192.168.1.78");
+		factory.setHost("192.168.1.195");
 		
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();

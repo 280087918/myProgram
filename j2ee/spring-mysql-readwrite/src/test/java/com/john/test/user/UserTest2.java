@@ -27,9 +27,9 @@ public class UserTest2 {
 	@Test
 	public void save() {
 		UserVo user1 = new UserVo();
-		user1.setId("10");
-		user1.setName("11");
-		user1.setAge(12);
+		user1.setId("11");
+		user1.setName("12");
+		user1.setAge(13);
 		
 		userService.saveUser(user1);
 	}

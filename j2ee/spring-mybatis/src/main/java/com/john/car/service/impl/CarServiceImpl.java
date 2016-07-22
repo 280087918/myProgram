@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.john.car.dao.CarDaoMapper;
 import com.john.car.service.CarService;
 import com.john.car.vo.CarVo;
@@ -25,6 +26,13 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<CarVo> listCars() {
 		return carDao.queryCars();
+	}
+	
+	@Override
+	public List<CarVo> listPageCars(int page, int rows) {
+		//分页查询
+        PageHelper.startPage(page, rows);
+        return carDao.queryCars();
 	}
 	
 	@Override

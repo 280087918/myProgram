@@ -17,7 +17,7 @@ import com.rabbitmq.client.Envelope;
  * @author zhang.hc
  * @date 2016年6月13日 下午5:38:59
  */
-public class ReceiveLogs {
+public class ReceiveLogs2 {
 	static final String EXCHANGE_NAME = "xxx.fanout";
 
 	public static void main(String[] args) throws IOException, TimeoutException {
@@ -30,7 +30,7 @@ public class ReceiveLogs {
 		// 声明一个exchange
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 		String queueName = channel.queueDeclare().getQueue();
-		System.out.println("queueName1:" + queueName);
+		System.out.println("queueName2:" + queueName);
 		//获取一个队列，并且跟交换器绑定,fanout模式忽略最后的那个routing key参数
 		channel.queueBind(queueName, EXCHANGE_NAME, "");
 

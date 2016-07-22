@@ -99,3 +99,7 @@ http://369369.blog.51cto.com/319630/790921/
   d)参照步骤8重新指定binlog以及要同步的位置
   e)开启salve
   f)解除主库表锁定
+
+3.安全删除binlog文件
+  purge binary logs to 'binlog.000058';
+  移除除binlog.000058之外的所有binlog文件

@@ -22,11 +22,11 @@ import com.rabbitmq.client.Envelope;
 public class ReceiveLogsTopic1 {
 static final String EXCHANGE_NAME = "zhc_topic_logs";
 	
-	static final String ROUTING_KEY = "*.stock.*";
+	static final String ROUTING_KEY = "order.stock.log";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("192.168.1.78");
+		factory.setHost("192.168.1.195");
 
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();

@@ -10,4 +10,6 @@ public interface UserService {
 	public List<UserVo> listUser();
 	
 	public UserVo findUser(String id);
+	
+	public int saveBatch();
 }

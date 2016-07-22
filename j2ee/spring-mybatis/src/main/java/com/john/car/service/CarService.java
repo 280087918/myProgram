@@ -9,5 +9,7 @@ public interface CarService {
 	
 	public List<CarVo> listCars();
 	
+	public List<CarVo> listPageCars(int page, int rows);
+	
 	public void rollbackCar(CarVo carVo) throws Exception ;
 }

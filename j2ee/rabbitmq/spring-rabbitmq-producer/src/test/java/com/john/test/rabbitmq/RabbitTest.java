@@ -18,7 +18,7 @@ public class RabbitTest extends BaseTest {
 	@Test
 	public void testProduce() {
 		String msg = "测试";
-//		amqpTemplate.convertAndSend("x-ha-policy", msg);
-		amqpTemplate.convertAndSend(msg);
+		amqpTemplate.convertAndSend("aaa.bbb.ccc", msg);
+//		amqpTemplate.convertAndSend(msg);
 	}
 }

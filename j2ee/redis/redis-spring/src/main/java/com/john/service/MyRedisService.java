@@ -56,12 +56,6 @@ public class MyRedisService {
 				redisTemplate.delete(transactionProcessingVarName);
 				log.info("删除标识");
 			}
-			
-			// 异常时当锁对象的父hashCode不为空时，则释放业务执行标识。
-			if (redisTemplate != null && jedisLock.getParentHashCode() != 0) {
-				redisTemplate.delete(transactionProcessingVarName);
-				log.info("删除标识");
-			}
 			// 释放锁。
 			if (jedisLock != null && jedisLock.isLocked()) {
 				jedisLock.release();

@@ -10,4 +10,6 @@ public interface UserMapper {
 	List<UserVo> queryUsers();
 	
 	UserVo findById(String id);
+	
+	void udUserAge(UserVo userVo);
 }

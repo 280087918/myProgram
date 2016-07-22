@@ -31,10 +31,10 @@
             <rabbit:binding exchange="my-mq-exchange" key="wms.stock.currentNum" />
         </rabbit:bindings>
     </rabbit:direct-exchange> -->
-    <rabbit:direct-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false" />
+    <rabbit:topic-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false" />
 	
 	<!-- spring-rabbit-template声明 -->
 	<!-- 如果不在这里指定routing-key那么就在template发送的时候指定routing-key -->
 	<rabbit:template connection-factory="mq-connection-factory" message-converter="jsonMessageConverter" 
-		id="amqpTemplate" exchange="my-mq-exchange" routing-key="wms.stock.currentNum"/>
+		id="amqpTemplate" exchange="my-mq-exchange"/>
 </beans>

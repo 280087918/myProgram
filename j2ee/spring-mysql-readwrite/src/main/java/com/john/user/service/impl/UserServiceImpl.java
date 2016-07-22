@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.john.user.dao.UserMapper;
 import com.john.user.service.UserService;
 import com.john.user.vo.UserVo;
+import com.john.utils.IdUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,5 +31,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVo findUser(String id) {
 		return userDao.findById(id);
+	}
+	
+	@Override
+	@Transactional
+	public int saveBatch() {
+		for (int i = 1; i <= 10000; i++) {
+			userDao.saveUser(new UserVo(IdUtils.uuid(), "test"+i, i));
+		}
+		return 1;
 	}
 }

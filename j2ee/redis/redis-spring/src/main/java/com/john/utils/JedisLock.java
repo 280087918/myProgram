@@ -184,6 +184,7 @@ public class JedisLock {
 
 			timeout -= 100;
 			Thread.sleep(100);
+			System.out.println("线程【" + Thread.currentThread().getName() + "】acquire在等待......");
 		}
 
 		return false;
