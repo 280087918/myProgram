@@ -1,7 +1,8 @@
+master_binlog_dir=/data/mysql
 [server default]
 #manager dir
-manager_workdir=/masterha/app1  
-manager_log=/masterha/app1/manager.log  
+manager_workdir=/masterha/app1
+manager_log=/masterha/app1/manager.log
 remote_workdir=/masterha/app1
 
 #mysql manager user
@@ -13,7 +14,7 @@ ssh_user=root
 
 #replication_user
 repl_user=repluser
-repl_password=hoodong
+repl_password=123456
 
 #checking master every second
 ping_interval=1
@@ -24,20 +25,20 @@ ping_interval=1
 #master_ip_online_change_script=""
 #report_script=""
 
-[server1]  
-hostname=172.16.1.98  
-master_binlog_dir="/data/mysqllog/3306"
+[server1]
+hostname=192.168.1.98
+master_binlog_dir="/data/mysql"
 ssh_port=22
 candidate_master=1
 
-[server2]  
-hostname=172.16.1.81
-master_binlog_dir="/data/mysqllog/3306"
+[server2]
+hostname=192.168.1.81
+master_binlog_dir="/data/mysql"
 ssh_port=22
 candidate_master=1
 
 [server3]
-hostname=172.16.1.84
-master_binlog_dir="/data/mysqllog/3306"
+hostname=192.168.1.84
+master_binlog_dir="/data/mysql"
 ssh_port=22
 candidate_master=1

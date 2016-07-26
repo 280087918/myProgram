@@ -15,4 +15,5 @@
   export PATH
   export CLASSPATH
 
-......貌似要reboot机器，要不然不起作用
+#执行命令，环境变量马上生效
+   source /etc/profile

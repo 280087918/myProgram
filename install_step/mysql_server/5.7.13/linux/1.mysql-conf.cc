@@ -15,8 +15,8 @@
   mv mysql-5.7.13-linux-glibc2.5-x86_64/ mysql
 
 5.创建仓库目录和日志目录
-  /data/mysql
-  /data/log/mysql
+  mkdir -p /data/mysql
+  mkdir -p /data/log/mysql
 
 6.创建用户组及用户
   如果存在mysql用户，那么先删除
@@ -90,3 +90,12 @@
    chkconfig --add mysql
    chkconfig --level 345 mysql on
 
+19 如果客户端连接不通
+    查看防火墙信息：
+	#/etc/init.d/iptables status
+	起停防火墙，即时生效，重启后失效:
+	service iptables start
+	service iptables stop
+	起停防火墙，重启后生效:
+	chkconfig iptables on
+	chkconfig iptables off
