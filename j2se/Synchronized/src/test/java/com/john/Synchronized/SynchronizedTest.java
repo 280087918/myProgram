@@ -1,48 +1,33 @@
 package com.john.Synchronized;
 
+import org.junit.Test;
+
 public class SynchronizedTest extends BaseTest {
 	
-	public static void main1(String[] args) {
-		final User user = new User();
-		
-		log.info("---------------test begin---------------");
-		Thread t1 = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				user.add();
-			}
-		});
-		
-		Thread t2 = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				user.update();
-			}
-		});
-		
-		t1.start();
-		t2.start();
-		log.info("---------------test end---------------");
-	}
-	
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		final Car car = new Car();
-		
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				car.add();
+				car.add1();
 			}
 		});
 		
 		Thread t2 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				car.update();
+				car.update1();
 			}
 		});
 		
 		t1.start();
 		t2.start();
+		
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -17,11 +17,12 @@ public class Car {
 		synchronized(obj) {
 			try {
 //				this.wait(2000);//这里用waitJVM会直接抛出异常，因为JVM认为你本身在锁里面去释放锁是不合理的。
+				log.info("adding a car");
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			log.info("add a car");
+			log.info("a car added");
 		}
 	}
 	
@@ -29,5 +30,20 @@ public class Car {
 		synchronized(obj) {
 			log.info("update a car");
 		}
+	}
+	
+	public synchronized void add1() {
+		try {
+//			this.wait(2000);//这里用waitJVM会直接抛出异常，因为JVM认为你本身在锁里面去释放锁是不合理的。
+			log.info("add1 adding a car");
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		log.info("add1 a car added");
+	}
+	
+	public synchronized void update1() {
+		log.info("update1 a car");
 	}
 }

@@ -42,6 +42,7 @@
   sudo yum -y install perl-DBD-MySQL.x86_64 erl-Log-Dispatch perl-Config-Tiny perl-Parallel-ForkManager
 
 5.manager服务器安装manager
+  -->这一步不操作，跳过，后面会安装
   192.168.1.85:
   rpm -ivh mha4mysql-manager-0.56-0.el6.noarch.rpm --nodeps
 
@@ -97,7 +98,7 @@
     如此类推，有同样的异常就这么解决
 
 12.各个从节点上配置mysqlbinlog，和mysql的软连接
-   192.168.1.81,192.168.1.81上执行:
+   192.168.1.81,192.168.1.84上执行:
    ln -s /usr/local/mysql/bin/mysqlbinlog /usr/bin/mysqlbinlog
    ln -s /usr/local/mysql/bin/mysql /usr/bin
 
