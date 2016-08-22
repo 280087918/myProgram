@@ -22,16 +22,24 @@
 		</property>
 	</bean>
 	
-	<!-- 队列声明
-	<rabbit:queue id="hc.ts.queue" name="hc.ts.queue" durable="true" auto-delete="false" exclusive="false"/> -->
+	<!-- 队列声明 
+	<rabbit:queue id="hc.ts.queue" name="hc.ts.queue" durable="true" auto-delete="false" exclusive="false">
+		集群配置
+		<rabbit:queue-arguments>
+			<entry key="x-ha-policy" value="all" />
+		</rabbit:queue-arguments>
+	</rabbit:queue>-->
 	
-	<!-- exchange与队列的绑定
+	<!-- exchange与队列的绑定(大部分业务场景需要这个，生产者去初始化交换器，并且生成队列，好处是队列不由消费者声明，生产者可以直接发送消息到指定队列，等待消费)
+		好像是这么说，不过我本地貌似这个配置没卵用
 	<rabbit:direct-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false">
         <rabbit:bindings>
-            <rabbit:binding exchange="my-mq-exchange" key="wms.stock.currentNum" />
+            <rabbit:binding key="wms.stock.currentNum" queue="hc.ts.queue" />
         </rabbit:bindings>
     </rabbit:direct-exchange> -->
-    <rabbit:topic-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false" />
+    <!-- 这个是可以发送并且接收的 
+    <rabbit:direct-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false" />-->
+    <!-- <rabbit:topic-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false" /> -->
 	
 	<!-- spring-rabbit-template声明 -->
 	<!-- 如果不在这里指定routing-key那么就在template发送的时候指定routing-key -->

@@ -13,7 +13,7 @@ nginx是什么？
   cd nginx-1.9.15
 
   检查安装文件的完整性:
-  ./configure --prefix=/usr/local/nginx-1.9.15
+  ./configure --prefix=/usr/local/nginx-1.9.15 --conf-path=/usr/local/nginx-1.9.15/nginx.conf
   make
   make install
 

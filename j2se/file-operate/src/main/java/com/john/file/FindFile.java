@@ -18,7 +18,7 @@ public class FindFile {
 	//http://www.cnblogs.com/lovebread/archive/2009/11/23/1609122.html
 	Logger log = LoggerFactory.getLogger(FindFile.class);
 	
-	String fileName = "F:\\Program Source\\jeesite";
+	String fileName = "F:\\Program Source\\ydp-mall";
 	Set<String> paths = new HashSet<String>();
 	
 	String keywords = "com.rabbitmq";

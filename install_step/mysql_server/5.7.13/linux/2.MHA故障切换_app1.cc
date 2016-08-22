@@ -1,4 +1,3 @@
-master_binlog_dir=/data/mysql
 [server default]
 #manager dir
 manager_workdir=/masterha/app1

@@ -27,6 +27,46 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*.sc</url-pattern>
 	</filter-mapping>
+	
+	<!-- 当url的访问路径是一样的时候，具体看filter的摆放位置去执行 -->
+	<filter>
+		<filter-name>myFilter1</filter-name>
+		<filter-class>com.john.utils.MyFilter1</filter-class>
+		<init-param>
+			<param-name>var1</param-name>
+			<param-value>a</param-value>
+		</init-param>
+		<init-param>
+			<param-name>var2</param-name>
+			<param-value>b</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter1</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>myFilter2</filter-name>
+		<filter-class>com.john.utils.MyFilter2</filter-class>
+		<init-param>
+			<param-name>var1</param-name>
+			<param-value>a</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>myFilter3</filter-name>
+		<filter-class>com.john.utils.MyFilter3</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter3</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 
 	<!-- Spring 启动 -->
 	<listener>

@@ -80,12 +80,13 @@ public class ProductDaoImpl implements ProductDao {
 			QueryStringQueryBuilder queryBuilder = queryStringQuery(sb.toString()).analyzer("ik_smart");
 			
 			//设置高亮
-			reqBuilder.addHighlightedField("name").setHighlighterPreTags("<strong>").setHighlighterPostTags("</strong>");
+			//reqBuilder.addHighlightedField("name").setHighlighterPreTags("<strong>").setHighlighterPostTags("</strong>");
+			reqBuilder.addHighlightedField("name");
 			
 			reqBuilder.setQuery(boolQuery().should(queryBuilder));
 			reqBuilder.setFrom(0).setSize(5);//限制返回条数
 			
-			SearchResponse resp = reqBuilder.execute().actionGet();  
+			SearchResponse resp = reqBuilder.execute().actionGet();
 	        SearchHit[] hits = resp.getHits().getHits();
 	        
 	        //解析命中数据
@@ -122,7 +123,7 @@ public class ProductDaoImpl implements ProductDao {
 			
 			reqBuilder.setQuery(boolQuery().should(queryBuilder));
 			
-			SearchResponse resp = reqBuilder.execute().actionGet();  
+			SearchResponse resp = reqBuilder.execute().actionGet();
 	        SearchHit[] hits = resp.getHits().getHits();
 	        
 	        //解析命中数据

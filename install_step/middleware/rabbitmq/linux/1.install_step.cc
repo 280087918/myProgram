@@ -3,7 +3,7 @@ rabbitMq server的安装
 http://www.cnblogs.com/shanyou/p/3902905.html
 ----------------------------
 1.安装rabbitMq依赖插件
-  yum install xmlto rsync zip nc
+  yum install -y xmlto rsync zip nc
 
 2.安装simplejson
   用本地的包，或者翻墙找最新的包https://pypi.python.org/pypi/simplejson/
@@ -28,7 +28,7 @@ http://www.cnblogs.com/shanyou/p/3902905.html
   启动erlang:erl
   输入9+3.
       看结果是不是12，尼玛一般都是了。
-  推出erlang:halt().
+  退出erlang:halt().
       记得"."结束符
 
 4.下载rabbitmq server
@@ -36,7 +36,7 @@ http://www.cnblogs.com/shanyou/p/3902905.html
    下载v3.6.2版本的rabbitmq-server-3.6.2.tar.xz
 
 5.想解压缩这个xz的包需要安装xz解压缩插件
-    yum install xz
+    yum install -y xz
 
 6.解压缩rabbitmq-server-3.6.2.tar.xz
   xz -d rabbitmq-server-3.6.2.tar.xz
@@ -44,6 +44,7 @@ http://www.cnblogs.com/shanyou/p/3902905.html
   完了之后就会变成rabbitmq-server-3.6.2.tar
   继续解压缩这个包
   tar -xvf rabbitmq-server-3.6.2.tar
+  mv rabbitmq-server-3.6.2/ /usr/local
 
 7.下载rabbitmq client
    http://www.rabbitmq.com/releases/rabbitmq-java-client/
@@ -63,8 +64,12 @@ http://www.cnblogs.com/shanyou/p/3902905.html
   文件最后加入
   #rabbitmq enviroment
   export PATH=$PATH:/usr/local/rabbitmq-server-3.6.2/scripts
-  并重启linux系统
+  环境变量设置马上生效:
+  source /etc/profile
+  
   那么以后就可以直接启动了rabbitmq-server start &
+  上面这个启动命令不靠谱，一会儿就会自动关闭了，用下面这个命令能使启动一致在后台运行
+  rabbitmq-server -detached
 
 10.启用rabbit控制台插件
    mkdir /etc/rabbitmq
