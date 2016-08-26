@@ -75,7 +75,7 @@
 
 16.设置密码
    set password=password('ffzx2016');
-   grant all privileges on *.* to root@'%' identified by 'ffzx2016';
+   grant all privileges on *.* to root@'%' identified by 'ffzx2016' with grant option;
    flush privileges;
    
 17.添加系统路径

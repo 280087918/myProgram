@@ -96,6 +96,7 @@ yum -y remove mysql-*
 15.开启root的对外ip访问权限
   grant all privileges on *.* to 创建的用户名(root) @"%" identified by "密码";
   如:grant all privileges on *.* to root@"%" identified by 'ffzx2016';
+  最好用这个:grant all privileges on *.* to root@"%" identified by 'ffzx2016' with grant option;
   flush privileges;
 
 16.如果是用rpm安装的mysql，在/etc下面是没有my.cnf这个文件的,my.cnf是用来调整mysql的参数，占用内存什么的

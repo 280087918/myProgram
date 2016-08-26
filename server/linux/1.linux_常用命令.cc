@@ -3,3 +3,6 @@
 
 2.将远程文件复制到本地
   scp root@192.168.1.78:/usr/local/soft/apache-tomcat-7.0.69.zip /usr/local/soft
+
+3.查看端口有没有开启
+  netstat -tunlp|grep 9991
