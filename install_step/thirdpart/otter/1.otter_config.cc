@@ -18,7 +18,7 @@ https://github.com/alibaba/otter/wiki/Manager%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8
 
 3.到git上下载manager.deployer-4.2.1.tar.gz
   上传到服务器并解压缩,前提先创建好文件夹
-  tar zxvf manager.deployer-4.2.1.tar.gz  -C /usr/local/otter
+  tar -xzvf manager.deployer-4.2.12.tar.gz -C /usr/local/otter
 
 4.修改conf/otter.properties
   主要修改数据库配置，这个地方是otter自己的数据库，不是同步的数据库
@@ -33,7 +33,13 @@ https://github.com/alibaba/otter/wiki/Manager%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8
   sh startup.sh
   sh stop.sh
 
-7.访问控制台
+7.otter程序内部是用大写访问数据库表的
+  默认情况下mysql表明访问是区分大小写的。
+  在数据库配置文件my.cnf的[mysqld]下任意地方添加以下一句:
+  lower_case_table_name=1
+  0:区分大小写，1:不区分大小写
+
+8.访问控制台
   http://192.168.1.126:8088 -因为我设定的是8088端口
   默认是匿名登录的，这种情况不能做任何配置，如果要配置，那么先登出，再登录
 	admin/admin

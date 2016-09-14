@@ -14,7 +14,7 @@ admin/admin
   观察节点序号，并记住,这里节点序号是1
 
 4.下载node.deployer-4.2.1.tar.gz，并解压缩
-   tar zxvf node.deployer-4.2.1.tar.gz  -C /usr/local/otter_node1
+   tar -zxvf node.deployer-4.2.12.tar.gz  -C /usr/local/otter_node1
 
 
 5.到conf根目录下生成nid
@@ -39,7 +39,7 @@ admin/admin
   原因:在otter控制台上配置zookeeper集群的时候写错端口了。
   解决办法:删掉node,删掉zookeeper集群，重新弄，这个node需要会增加，所以要按照步骤(5)重新在node上生成nid
 
-  c.如果安装的过程中遇到需要安装aria2c
+  c.如果安装的过程中遇到需要安装aria2c(内网不用安装，之前出现的问题是机器内存不足)
 	c-1)到官网下载最新的aria2包
 		https://aria2.github.io/
 		目前最新版本是aria2-1.24.0.tar.gz,我下的就是这个

@@ -54,6 +54,13 @@
 	    <version>1.6.0.RELEASE</version>
 	</dependency>
 	
+	<!-- api引用 -->
+	<dependency>
+		<groupId>com.ffzx</groupId>
+		<artifactId>spring-rabbitmq-api</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	
 	<dependency>
 	    <groupId>org.codehaus.jackson</groupId>
 	    <artifactId>jackson-mapper-asl</artifactId>

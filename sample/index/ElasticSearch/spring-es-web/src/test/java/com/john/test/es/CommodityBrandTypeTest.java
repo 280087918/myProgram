@@ -9,6 +9,11 @@ import com.john.dao.CommodityBrandTypeDao;
 import com.john.test.BaseTest;
 import com.john.vo.CommodityBrandType;
 
+/**
+ * 若干种搜索的方式
+ * @author zhang.hc
+ * @date 2016年8月29日 下午2:38:10
+ */
 public class CommodityBrandTypeTest extends BaseTest {
 	@Autowired
 	private CommodityBrandTypeDao commodityBrandTypeDao;
@@ -19,9 +24,15 @@ public class CommodityBrandTypeTest extends BaseTest {
 		commodityBrandTypeDao.saveBrandType(new CommodityBrandType("002", "爱玛电动车", "电动车"));
 	}
 	
+	/**
+	 * 使用Spring-data的Criteria
+	 * 不过好像没达到我要的效果，我需要完整匹配的，这里不支持
+	 */
 	@Test
 	public void findExactlyOne() {
-		List<CommodityBrandType> commodityBrandTypes = commodityBrandTypeDao.searchListByBrandAndType("爱玛", "电动车");
+		List<CommodityBrandType> commodityBrandTypes = commodityBrandTypeDao.searchCriteria("爱玛", "电动车");
 		log.info("" + commodityBrandTypes);
 	}
+	
+	
 }

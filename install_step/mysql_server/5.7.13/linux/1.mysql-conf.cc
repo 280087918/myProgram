@@ -34,7 +34,7 @@
   chown -R mysql /data/mysql
 
 8.安装其他插件
-  yum install -y yum install libaio*
+  yum install -y libaio*
 
 9.配置参数
   bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/data/mysql

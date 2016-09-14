@@ -13,4 +13,6 @@ public interface CommodityBrandTypeDao {
 	public void saveBrandType(CommodityBrandType brandType);
 	
 	public List<CommodityBrandType> searchListByBrandAndType(String brand, String type);
+	
+	public List<CommodityBrandType> searchCriteria(String brand, String type);
 }

@@ -48,6 +48,13 @@
 		<version>${spring.version}</version>
 	</dependency>
 	
+	<!-- api引用 -->
+	<dependency>
+		<groupId>com.ffzx</groupId>
+		<artifactId>spring-rabbitmq-api</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	
 	<!-- GENERAL UTILS begin -->
 	<dependency>
 		<groupId>org.apache.commons</groupId>

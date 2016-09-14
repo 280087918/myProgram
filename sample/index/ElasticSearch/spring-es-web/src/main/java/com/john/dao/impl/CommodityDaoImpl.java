@@ -76,7 +76,7 @@ public class CommodityDaoImpl implements CommodityDao {
 					.setTypes(indexType).setSearchType(SearchType.DEFAULT).setExplain(true);
 			
 			StringBuffer sb = new StringBuffer();
-			sb.append(" name:" + keyword + " or brand:" + keyword);
+			sb.append(" name:" + keyword);
 			
 			QueryStringQueryBuilder queryBuilder = queryStringQuery(sb.toString()).analyzer("ik_smart");
 			
