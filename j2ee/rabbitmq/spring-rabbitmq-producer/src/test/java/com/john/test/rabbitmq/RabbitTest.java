@@ -5,7 +5,6 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ffzx.dto.Message;
 import com.john.test.BaseTest;
 
 /**
@@ -26,7 +25,7 @@ public class RabbitTest extends BaseTest {
 //		rabbitTemplate.convertAndSend("wms.stock.currentNum", msg);
 		
 		//Message message = new Message();
-		rabbitTemplate.convertAndSend("wms.stock.currentNum", new Message("1", "张浩成", 20, 5000));
-		rabbitTemplate.convertAndSend("wms.stock.currentNum", new Message("2", "桃子", 18, 2000));
+//		rabbitTemplate.convertAndSend("wms.stock.currentNum", new Message("1", "张浩成", 20, 5000));
+//		rabbitTemplate.convertAndSend("wms.stock.currentNum", new Message("2", "桃子", 18, 2000));
 	}
 }

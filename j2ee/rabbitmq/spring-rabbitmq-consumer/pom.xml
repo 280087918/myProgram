@@ -54,6 +54,13 @@
 	    <version>1.6.0.RELEASE</version>
 	</dependency>
 	
+	<!-- Gson工具引用 -->
+	<dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+	    <version>2.2.2</version>
+	</dependency>
+	
 	<!-- api引用 -->
 	<dependency>
 		<groupId>com.ffzx</groupId>

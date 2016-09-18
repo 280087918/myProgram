@@ -24,11 +24,19 @@
 	
 	<!-- 队列声明 -->
 	<rabbit:queue id="hc.ts.queue" name="hc.ts.queue" durable="true" auto-delete="false" exclusive="false"/>
-	
 	<!-- exchange与队列的绑定 -->
 	<rabbit:direct-exchange id="my-mq-exchange" name="my-mq-exchange" durable="true" auto-delete="false">
         <rabbit:bindings>
             <rabbit:binding queue="hc.ts.queue" key="wms.stock.currentNum" />
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+    
+    <!-- 队列声明 -->
+	<rabbit:queue id="DELAY.QUEUE.DEATH" name="DELAY.QUEUE.DEATH" durable="true" auto-delete="false" exclusive="false"/>
+	<!-- exchange与队列的绑定 -->
+	<rabbit:direct-exchange id="PERIOD_EX" name="PERIOD_EX" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="DELAY.QUEUE.DEATH" key="DELAY.ROUTING.KEY.DEATH" />
         </rabbit:bindings>
     </rabbit:direct-exchange>
 	
@@ -43,4 +51,9 @@
 	    <rabbit:listener ref="rabbitmqListener" queue-names="hc.ts.queue" method="onMessage" />
 	</rabbit:listener-container>
 	<bean id="rabbitmqListener" class="com.john.rabbitmq.RabbitMqListenerWithChannel" />
+	
+	<rabbit:listener-container connection-factory="mq-connection-factory" message-converter="jsonMessageConverter">  
+	    <rabbit:listener ref="delayMqListener" queue-names="DELAY.QUEUE.DEATH" method="onMessage" />
+	</rabbit:listener-container>
+	
 </beans>
