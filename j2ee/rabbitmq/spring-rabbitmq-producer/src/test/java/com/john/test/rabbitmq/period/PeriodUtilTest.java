@@ -9,10 +9,10 @@ public class PeriodUtilTest {
 	@Test
 	public void sendObj() {
 		Message msg1 = new Message("测试1", 10);
-		RabbitPeriod.sendPeriodMessage("PERIOD_EX", "DELAY.QUEUE", "DELAY.ROUTING.KEY", msg1, 5000);
+		RabbitPeriod.sendPeriodMessage("PERIOD_EX", "DELAY.QUEUE", "DELAY.ROUTING.KEY", msg1, 10000);
 		
 		Message msg2 = new Message("测试2", 20);
-		RabbitPeriod.sendPeriodMessage("PERIOD_EX", "DELAY.QUEUE", "DELAY.ROUTING.KEY", msg2, 10000);
+		RabbitPeriod.sendPeriodMessage("PERIOD_EX", "DELAY.QUEUE", "DELAY.ROUTING.KEY", msg2, 4000);
 		
 //		Message msg3 = new Message("测试3", 30);
 //		RabbitPeriod.sendPeriodMessage("PERIOD_EX", "DELAY.QUEUE", "DELAY.ROUTING.KEY", msg3, 7000);

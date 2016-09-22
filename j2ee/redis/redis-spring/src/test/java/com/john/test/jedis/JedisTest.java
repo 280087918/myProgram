@@ -41,4 +41,26 @@ public class JedisTest extends BaseTest {
 		
 		redisTemplate.delete("key0524");
 	}
+	
+	//----------------超时测试 begin
+	@Test
+	public void test4() {
+		redisTemplate.opsForValue().set("t1", "v1", 8, TimeUnit.SECONDS);
+		redisTemplate.opsForValue().set("t2", "v2", 3, TimeUnit.SECONDS);
+		redisTemplate.opsForValue().set("t3", "v3", 7, TimeUnit.SECONDS);
+		redisTemplate.opsForValue().set("t0", "v0", 100, TimeUnit.MILLISECONDS);
+	}
+	
+	@Test
+	public void test5() {
+		String s = redisTemplate.opsForValue().get("t1");
+		log.info("s:{}", s);
+	}
+	
+	@Test
+	public void test6() {
+		redisTemplate.opsForValue().set("ffzx:es:t1", "v1", 3, TimeUnit.SECONDS);
+	}
+	
+	//----------------超时测试 end
 }
