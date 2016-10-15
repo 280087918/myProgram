@@ -35,10 +35,10 @@ public class AServiceImpl implements AService {
 	
 	@PostConstruct
 	public void init() {
-		if(!elasticsearchTemplate.indexExists(A.class)) {
-			elasticsearchTemplate.createIndex(A.class);
-		}
-		elasticsearchTemplate.putMapping(A.class);
+//		if(!elasticsearchTemplate.indexExists(A.class)) {
+//			elasticsearchTemplate.createIndex(A.class);
+//		}
+//		elasticsearchTemplate.putMapping(A.class);
 	}
 	
 	@Override
@@ -60,6 +60,16 @@ public class AServiceImpl implements AService {
 	@Override
 	public A findASimiJoin(String bId) {
 		QueryBuilder builder = nestedQuery("bs", boolQuery().must(termQuery("bs.id", bId)));
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(builder).build();
+		
+		List<A> as = elasticsearchTemplate.queryForList(searchQuery, A.class);
+		return CollectionUtils.isNotEmpty(as) ? as.get(0) : null;
+	}
+	
+	@Override
+	public A findAsimiJoinS(String s) {
+		//QueryBuilder builder = nestedQuery("ss", boolQuery().must(termQuery("ss", s)));
+		QueryBuilder builder = termQuery("ss", s);
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(builder).build();
 		
 		List<A> as = elasticsearchTemplate.queryForList(searchQuery, A.class);

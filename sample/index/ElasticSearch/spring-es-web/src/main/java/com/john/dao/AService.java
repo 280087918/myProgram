@@ -13,4 +13,6 @@ public interface AService {
 	public A findAById(String id);
 	
 	public A findASimiJoin(String bId);
+	
+	public A findAsimiJoinS(String s);
 }

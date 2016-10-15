@@ -43,8 +43,7 @@ http://www.cnblogs.com/shanyou/p/3902905.html
 
   完了之后就会变成rabbitmq-server-3.6.2.tar
   继续解压缩这个包
-  tar -xvf rabbitmq-server-3.6.2.tar
-  mv rabbitmq-server-3.6.2/ /usr/local
+  tar -xf rabbitmq-server-3.6.2.tar -C /usr/local
 
 7.下载rabbitmq client
    http://www.rabbitmq.com/releases/rabbitmq-java-client/
@@ -53,6 +52,7 @@ http://www.cnblogs.com/shanyou/p/3902905.html
 
 8.进入rabbitmq server目录，并进行编译
    cd /usr/local/rabbitmq-server-3.6.2
+   mkdir -p /opt/mq/rabbitmq /opt/mq/rabbitmq/sbin /opt/mq/rabbitmq/man
    make install TARGET_DIR=/opt/mq/rabbitmq SBIN_DIR=/opt/mq/rabbitmq/sbin MAN_DIR=/opt/mq/rabbitmq/man
 
 9.rabbitmq相关命令
@@ -89,3 +89,9 @@ http://www.cnblogs.com/shanyou/p/3902905.html
    rabbitmqctl add_user admin 123456
    rabbitmqctl set_user_tags admin administrator
    rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+
+===========================问题解决===========================
+13.启动失败，运行底下这个命令，查看这里面的启动日志，看是哪里出了问题
+  a)一般情况下，先使用rabbitmq-server start就可以看到启动的信息，如果不够再用下面的这个
+  b)nohup rabbitmq-server start > /var/log/rabbitmq/rabbitmq.log 2>/var/log/rabbitmq/rabbitmq.log &
+

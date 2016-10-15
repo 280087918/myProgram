@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import org.springframework.data.annotation.Id;
@@ -12,43 +14,36 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldIndex;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+/**
+ * 测试索引的搜索，分词特性
+ * @author zhang.hc
+ * @date 2016年9月28日 下午2:25:25
+ */
 @Data
 @ToString
-@Document(indexName = "a", type = "local")
-public class A {
+@Document(indexName = "keyword", type = "local")
+@RequiredArgsConstructor
+public class Keyword {
 	
 	@Id
 	@Field(index = FieldIndex.not_analyzed, store = true)
+	@NonNull
 	private String id;
 	
-	//商品名称
-	@Field(type = FieldType.String, store = true)
+	@Field(type=FieldType.String, analyzer="ik_max_word", searchAnalyzer="ik_max_word", store=true)
+	@NonNull
 	private String name;
 	
-	@Field(type = FieldType.Nested)
-	private List<B> bs = new ArrayList<B>();
+	@Field(type=FieldType.String)
+	private List<String> parentIds = new ArrayList<String>();
 	
-	@Field(type = FieldType.Nested)
-	private List<String> ss = new ArrayList<String>();
-	
-	public A() {
+	public Keyword() {
 		super();
 	}
 	
-	public A(String id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-	
-	public void addB(B b) {
-		if(!this.bs.contains(b)) {
-			bs.add(b);
-		}
-	}
-	
-	public void addS(String s) {
-		if(!this.ss.contains(s)) {
-			ss.add(s);
+	public void addParentId(String pId) {
+		if(!parentIds.contains(pId)) {
+			parentIds.add(pId);
 		}
 	}
 }

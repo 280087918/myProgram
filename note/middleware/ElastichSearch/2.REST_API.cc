@@ -69,3 +69,5 @@
 #删除一个文档
  XDELETE http://192.168.22.181:9200/blog/article/1
 
+#查看索引的mapping
+http://192.168.11.211:9200/cims/commodity/_mapping?pretty

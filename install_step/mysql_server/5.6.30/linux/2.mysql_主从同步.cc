@@ -23,6 +23,9 @@ http://369369.blog.51cto.com/319630/790921/
   # db which is not going to synchronize(muti db can be seperate by comma)
   # binlog_ignore_db=mysql
 
+  #新加一个配置，下次调试的时候看一下，这个是对主从同步有性能上的优化
+   innodb_flush_log_at_trx_commit=2
+
   配置完成后，mysql主库执行命令查看状态是否正常
 
 2.mysql命令行创建用户(一般不使用root账户进行数据同步)

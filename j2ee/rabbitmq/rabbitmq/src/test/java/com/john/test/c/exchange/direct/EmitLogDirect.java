@@ -16,11 +16,11 @@ public class EmitLogDirect {
 	static final String EXCHANGE_NAME = "zhc_direct_logs";
 	
 	//info;waring;error.
-	static final String ROUTING_KEY = "waring";
+	static final String ROUTING_KEY = "info";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("192.168.2.184");
+		factory.setHost("192.168.22.181");
 		
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
