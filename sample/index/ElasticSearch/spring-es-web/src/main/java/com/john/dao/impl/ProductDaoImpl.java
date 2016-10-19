@@ -27,7 +27,7 @@ import org.springframework.stereotype.Repository;
 import com.john.dao.ProductDao;
 import com.john.vo.Product;
 
-@Repository
+//@Repository
 public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	private ElasticsearchTemplate elasticsearchTemplate;

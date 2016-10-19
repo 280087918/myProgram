@@ -11,11 +11,12 @@ http://88250.b3log.org/rabbitmq-clustering-ha
 首先修改各个机器的主机名
 vim /etc/sysconfig/network
 181
-   将HOSTNAME修改成vm1，这个是机器重启后生效
+   将HOSTNAME修改成rabbitmq_node1，这个是机器重启后生效
    hostname vm1，即时生效，不过最好还是将几台机器重启一下
-182的修改成vm2，同理183，184
+182的修改成rabbitmq_node2，同理183
 
 注意:要保证各个机器名的独立性，要不然后面会很头疼
+如果改了机器名，必须先执行rabbitmqctl force_boot，再启动mq。然后再做后续的排序操作。
 
 ======================================
 1.首先在那三个服务器都安装上rabbitmq，并通过网页登录看是否能顺利开启并登陆
@@ -69,6 +70,10 @@ vim /etc/sysconfig/network
   rabbitmqctl set_policy ha-all "^" '{"ha-mode":"all"}'
 
 9.配置完成之后，原来的admin用户不知道为什么不能使用了
+  解决方案，各个节点添加一个admin用户
+	但是还是看不见exchange相关信息，更别说操作了，不过有一个很奇怪的现象，guest可以做admin相关操作,-_-!
+  rabbitmqctl add_user hcadmin adminpwd
+  rabbitmqctl set_user_tags hcadmin administrator
 
 10.使用HAProxy做负载均衡器
   首先负载均衡器放到192.168.22.184上面，所以下面对于haproxy的操作都是在184上操作的
@@ -93,6 +98,7 @@ vim /etc/sysconfig/network
    haproxy -f /etc/haproxy/haproxy.cfg -D
 
 13.配置完成，可以使用客户端程序进行测试
+   客户端直接连接184这台机器即可
 
 ========================问题解决==============================
 1.启动时提示需要依赖其他节点先启动的情况

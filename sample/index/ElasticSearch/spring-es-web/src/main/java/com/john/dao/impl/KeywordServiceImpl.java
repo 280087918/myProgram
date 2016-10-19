@@ -1,7 +1,5 @@
 package com.john.dao.impl;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
-
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -73,7 +71,9 @@ public class KeywordServiceImpl implements KeywordService {
 		BoolQueryBuilder qb = QueryBuilders.boolQuery();
 		if(StringUtils.isNotBlank(keyword)) {
 			keyword = keyword.trim();
-			qb.must(queryStringQuery(" name:" + keyword));
+			qb.must(QueryBuilders.boolQuery()
+					.should(QueryBuilders.matchQuery("name", keyword)));
+			//qb.must(queryStringQuery(" name:" + keyword));
 		}
 		
 		if(StringUtils.isNotBlank(searchId)) {

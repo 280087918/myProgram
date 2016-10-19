@@ -1,17 +1,17 @@
 package com.john.vo;
 
+import lombok.Data;
+import lombok.ToString;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldIndex;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import lombok.Data;
-import lombok.ToString;
-
 @Data
 @ToString
-@Document(indexName = "product", type = "local")
+@Document(indexName = "product", type = "local", shards = 5, replicas = 1)
 public class Product {
 	@Id
 	@Field(index = FieldIndex.not_analyzed, store = true)

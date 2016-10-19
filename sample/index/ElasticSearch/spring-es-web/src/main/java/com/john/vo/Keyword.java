@@ -21,7 +21,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  */
 @Data
 @ToString
-@Document(indexName = "keyword", type = "local")
+@Document(indexName = "keyword", type = "local", shards = 5, replicas = 1)
 @RequiredArgsConstructor
 public class Keyword {
 	
@@ -30,7 +30,7 @@ public class Keyword {
 	@NonNull
 	private String id;
 	
-	@Field(type=FieldType.String, analyzer="ik_max_word", searchAnalyzer="ik_max_word", store=true)
+	@Field(type=FieldType.String, analyzer="ik_smart", searchAnalyzer="ik_smart", store=true)
 	@NonNull
 	private String name;
 	

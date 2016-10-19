@@ -20,7 +20,7 @@ public class EmitLogDirect {
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("192.168.22.181");
+		factory.setHost("192.168.22.184");
 		
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
@@ -34,5 +34,7 @@ public class EmitLogDirect {
 		//关闭资源
 		channel.close();
 		connection.close();
+		
+		System.out.println("消息发送完毕......");
 	}
 }

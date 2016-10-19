@@ -22,7 +22,7 @@ public class Send {
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();//新建一个链接工厂
-		factory.setHost("192.168.1.78");//设置rabbit服务地址
+		factory.setHost("192.168.22.184");//设置rabbit服务地址
 		Connection connection = factory.newConnection();//连接工厂根据上面的ip地址新建一个rabbitmq链接
 		Channel channel = connection.createChannel();//创建一个通道
 

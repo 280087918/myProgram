@@ -63,3 +63,13 @@ redis高可用配置+密码配置(续着上面的步骤)
 
 11.修改哨兵文件sentinel.conf的一个密码相关的参数
    sentinel auth-pass mymaster zhcpwd
+
+--------------------------------------
+题外话
+--------------------------------------
+12.redis数据持久化
+   一般都是使用rdb和aof的方式持久化，这里使用aof
+   redis配置文件里面(随便选择一个)
+	appendfsync always --每次收到命令就写入磁盘
+	appendfsync everysec --每秒执行一次，默认开启这个
+	appendfsync no --依赖os，传说性能最好

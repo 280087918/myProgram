@@ -11,7 +11,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
 @ToString
-@Document(indexName = "commodity", type = "local")
+@Document(indexName = "commodity", type = "local", shards = 5, replicas = 1)
 public class Commodity {
 	@Id
 	@Field(index = FieldIndex.not_analyzed, store = true)

@@ -5,7 +5,6 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import com.john.dao.ProductRepository;
 import com.john.test.BaseTest;
@@ -16,15 +15,15 @@ public class ProductTest2 extends BaseTest {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@Test
-	public void save() {
-		productRepository.save(new Product("017", "测试", "三星", 4468.00));
-	}
-	
-	@Test
-	public void update() {
-		productRepository.save(new Product("017", "测试1", "三星", 4468.00));
-	}
+//	@Test
+//	public void save() {
+//		productRepository.save(new Product("017", "测试", "三星", 4468.00));
+//	}
+//	
+//	@Test
+//	public void update() {
+//		productRepository.save(new Product("017", "测试1", "三星", 4468.00));
+//	}
 	
 	@Test
 	public void findByName() {

@@ -19,6 +19,11 @@ public class JedisTest extends BaseTest {
 	}
 	
 	@Test
+	public void getTest() {
+		log.info("value:{}", redisTemplate.opsForValue().get("templateKey004"));
+	}
+	
+	@Test
 	public void del() {
 		log.info("value1:{}", redisTemplate.opsForValue().get("templateKey002"));
 		redisTemplate.delete("templateKey002");
