@@ -16,5 +16,9 @@ public interface KeywordService {
 	
 	public void clearData();
 	
+	public Keyword findObj(String id);
+	
+	public void removeObjById(String id);
+	
 	public void searchKeywords(Map<String, Object> params);
 }

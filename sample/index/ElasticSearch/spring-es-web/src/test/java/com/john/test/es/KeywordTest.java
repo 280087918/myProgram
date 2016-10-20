@@ -37,7 +37,7 @@ public class KeywordTest extends BaseTest {
 	@Test
 	public void searchTest() {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("keyword", "空调");
+//		params.put("keyword", "空调");
 //		params.put("searchId", "pid002");//parentId
 		//params.put("searchId", "k001");//id
 		keywordService.searchKeywords(params);
@@ -101,5 +101,27 @@ public class KeywordTest extends BaseTest {
 		kw8.addParentId("pid005");
 		kw8.addParentId("pid009");
 		keywordService.persistObj(kw8);
+	}
+	
+	//测试增删改
+	@Test
+	public void saveOne() {
+		Keyword kw9 = new Keyword("k010", "惠威5.1音响");
+		kw9.addParentId("pid001");
+		kw9.addParentId("pid005");
+		kw9.addParentId("pid009");
+		keywordService.persistObj(kw9);
+	}
+	
+	@Test
+	public void udOne() {
+		Keyword kw = keywordService.findObj("k008");
+		kw.setName("空调被2");
+		keywordService.persistObj(kw);
+	}
+	
+	@Test
+	public void removeOne() {
+		keywordService.removeObjById("k006");
 	}
 }

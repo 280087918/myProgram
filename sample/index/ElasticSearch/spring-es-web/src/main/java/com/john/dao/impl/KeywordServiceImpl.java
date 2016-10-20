@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.Criteria;
+import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.data.elasticsearch.core.query.DeleteQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
@@ -58,6 +60,20 @@ public class KeywordServiceImpl implements KeywordService {
 		deleteQuery.setType(Keyword.class.getAnnotation(Document.class).type());
 		
 		elasticsearchTemplate.delete(deleteQuery);
+	}
+	
+	@Override
+	public Keyword findObj(String id) {
+		Criteria criteria = Criteria.where("id").is(id);
+		CriteriaQuery criteriaQuery = new CriteriaQuery(criteria);
+		
+		Keyword keyword = elasticsearchTemplate.queryForObject(criteriaQuery, Keyword.class);
+		return keyword;
+	}
+	
+	@Override
+	public void removeObjById(String id) {
+		elasticsearchTemplate.delete(Keyword.class, id);
 	}
 	
 	@Override
