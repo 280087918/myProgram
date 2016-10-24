@@ -1,4 +1,4 @@
-package com.john.test.pdf;
+package com.john.test.pdf.itext;
 
 import java.io.FileOutputStream;
 
@@ -13,6 +13,12 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 
+/**
+ * ITEXT官网:http://itextpdf.com/
+ * 这是一个简单的demo
+ * @author zhang.hc
+ * @date 2016年10月24日 上午9:30:00
+ */
 public class ItextTest {
 	@Test//官方文档里面的简单demo，只是这里面加入了中文字体
 	public void simpleTest() {

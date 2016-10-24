@@ -1,4 +1,4 @@
-package com.john.test.pdf;
+package com.john.test.pdf.apache;
 
 import org.junit.Test;
 
