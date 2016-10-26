@@ -54,49 +54,49 @@ public class KeywordTest extends BaseTest {
 	}
 	
 	private void save() {
-		Keyword kw1 = new Keyword("k001", "海信空调KFR-35GW/A8S318N-A2(大1.5P)");
+		Keyword kw1 = new Keyword("k001", "海信空调KFR-35GW/A8S318N-A2(大1.5P)", "b001");
 		kw1.addParentId("pid001");
 		kw1.addParentId("pid002");
 		kw1.addParentId("pid003");
 		keywordService.persistObj(kw1);
 		
-		Keyword kw2 = new Keyword("k002", "海信空调KFR-50GW/A8D860N-N3 2P白色");
+		Keyword kw2 = new Keyword("k002", "海信空调KFR-50GW/A8D860N-N3 2P白色", "b001");
 		kw2.addParentId("pid001");
 		kw2.addParentId("pid002");
 		kw2.addParentId("pid004");
 		keywordService.persistObj(kw2);
 		
-		Keyword kw3 = new Keyword("k003", "2017年新版信封");
+		Keyword kw3 = new Keyword("k003", "2017年新版信封", "b002");
 		kw3.addParentId("pid001");
 		kw3.addParentId("pid002");
 		kw3.addParentId("pid005");
 		keywordService.persistObj(kw3);
 		
-		Keyword kw4 = new Keyword("k004", "调频FM收音机");
+		Keyword kw4 = new Keyword("k004", "调频FM收音机", "b003");
 		kw4.addParentId("pid001");
 		kw4.addParentId("pid002");
 		kw4.addParentId("pid006");
 		keywordService.persistObj(kw4);
 		
-		Keyword kw5 = new Keyword("k005", "海尔冰箱BCD-185TMPQ拉丝P219银色 双门");
+		Keyword kw5 = new Keyword("k005", "海尔冰箱BCD-185TMPQ拉丝P219银色 双门", "b004");
 		kw5.addParentId("pid001");
 		kw5.addParentId("pid003");
 		kw5.addParentId("pid007");
 		keywordService.persistObj(kw5);
 		
-		Keyword kw6 = new Keyword("k006", "美乐爱家系列斩切刀K-04AK");
+		Keyword kw6 = new Keyword("k006", "美乐爱家系列斩切刀K-04AK", "b005");
 		kw6.addParentId("pid001");
 		kw6.addParentId("pid004");
 		kw6.addParentId("pid008");
 		keywordService.persistObj(kw6);
 		
-		Keyword kw7 = new Keyword("k007", "海信空调KFR-72LW/A8T900Z-A2金色(3P)");
+		Keyword kw7 = new Keyword("k007", "海信空调KFR-72LW/A8T900Z-A2金色(3P)", "b006");
 		kw7.addParentId("pid001");
 		kw7.addParentId("pid005");
 		kw7.addParentId("pid009");
 		keywordService.persistObj(kw7);
 		
-		Keyword kw8 = new Keyword("k008", "空调被");
+		Keyword kw8 = new Keyword("k008", "空调被", "b007");
 		kw8.addParentId("pid001");
 		kw8.addParentId("pid005");
 		kw8.addParentId("pid009");
@@ -106,7 +106,7 @@ public class KeywordTest extends BaseTest {
 	//测试增删改
 	@Test
 	public void saveOne() {
-		Keyword kw9 = new Keyword("k010", "惠威5.1音响");
+		Keyword kw9 = new Keyword("k010", "惠威5.1音响", "b008");
 		kw9.addParentId("pid001");
 		kw9.addParentId("pid005");
 		kw9.addParentId("pid009");
@@ -123,5 +123,10 @@ public class KeywordTest extends BaseTest {
 	@Test
 	public void removeOne() {
 		keywordService.removeObjById("k006");
+	}
+	
+	@Test//聚合测试
+	public void aggregationTest() {
+		keywordService.searchBrandIds("海信空调");
 	}
 }

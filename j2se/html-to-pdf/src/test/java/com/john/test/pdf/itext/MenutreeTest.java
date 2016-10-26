@@ -49,20 +49,20 @@ public class MenutreeTest {
 			
 			//一个节点
 			Section section = chapter.addSection(ItextUtils.cnParagraph("小标题1-1", 14, Font.BOLDITALIC), 1);
-			section.add(ItextUtils.cnParagraph("内容内容1-1", 14, Font.BOLDITALIC));
-			section.add(ItextUtils.cnParagraph("内容内容1-1ext", 14, Font.BOLDITALIC));
+			section.add(ItextUtils.cnParagraph("内容内容1-1", 12, Font.NORMAL));
+			section.add(ItextUtils.cnParagraph("内容内容1-1ext", 12, Font.NORMAL));
 			section.setBookmarkOpen(false);
 			
 			Section section2 = section.addSection(ItextUtils.cnParagraph("小标题1-2", 14, Font.BOLDITALIC), 2);//后面这个数字2说明要跟随前面的数字进行级联
-			section2.add(ItextUtils.cnParagraph("内容1-2内容1-2", 14, Font.BOLDITALIC));
+			section2.add(ItextUtils.cnParagraph("内容1-2内容1-2", 12, Font.NORMAL));
 			
 			//另一个节点
 			Section section3 = chapter.addSection(ItextUtils.cnParagraph("小标题2-1", 14, Font.BOLDITALIC), 1);
-			section3.add(ItextUtils.cnParagraph("内容内容2-1", 14, Font.BOLDITALIC));
+			section3.add(ItextUtils.cnParagraph("内容内容2-1", 12, Font.NORMAL));
 			section3.setBookmarkOpen(false);
 			
 			Section section4 = section3.addSection(ItextUtils.cnParagraph("小标题2-2", 14, Font.BOLDITALIC), 2);//后面这个数字2说明要跟随前面的数字进行级联
-			section4.add(ItextUtils.cnParagraph("内容2-2内容2-2", 14, Font.BOLDITALIC));
+			section4.add(ItextUtils.cnParagraph("内容2-2内容2-2", 12, Font.NORMAL));
 			
 			document.add(chapter);
 			

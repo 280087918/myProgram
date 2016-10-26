@@ -1,5 +1,6 @@
 package com.john.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -21,4 +22,6 @@ public interface KeywordService {
 	public void removeObjById(String id);
 	
 	public void searchKeywords(Map<String, Object> params);
+	
+	public List<String> searchBrandIds(String keyword);
 }

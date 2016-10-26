@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -23,6 +24,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @ToString
 @Document(indexName = "keyword", type = "local", shards = 5, replicas = 1)
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Keyword {
 	
 	@Id
@@ -34,12 +36,12 @@ public class Keyword {
 	@NonNull
 	private String name;
 	
+	@NonNull
+	@Field(type=FieldType.String, index=FieldIndex.not_analyzed, store=true)
+	private String brandId;
+	
 	@Field(type=FieldType.String)
 	private List<String> parentIds = new ArrayList<String>();
-	
-	public Keyword() {
-		super();
-	}
 	
 	public void addParentId(String pId) {
 		if(!parentIds.contains(pId)) {

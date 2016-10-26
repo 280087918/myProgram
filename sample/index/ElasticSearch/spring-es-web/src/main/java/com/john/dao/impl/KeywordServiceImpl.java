@@ -1,13 +1,20 @@
 package com.john.dao.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -107,5 +114,51 @@ public class KeywordServiceImpl implements KeywordService {
 				logger.info("{}", k);
 			}
 		}
+	}
+	
+	@Override
+	public List<String> searchBrandIds(String keyword) {
+		List<String> list = null;
+		logger.info("keyword={}", keyword);
+		
+		String indexName = Keyword.class.getAnnotation(Document.class).indexName();
+		String indexType = Keyword.class.getAnnotation(Document.class).type();
+		SearchRequestBuilder reqBuilder = elasticsearchTemplate.getClient().prepareSearch(indexName).setTypes(indexType).setSearchType(SearchType.DEFAULT);
+		
+		reqBuilder.setQuery(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("name", keyword)));
+		reqBuilder.addFields("brandId");
+		reqBuilder.addAggregation(AggregationBuilders.terms("by_brandId").field("brandId"));
+		
+		SearchResponse resp = reqBuilder.execute().actionGet();
+		SearchHit[] hits = resp.getHits().getHits();
+		if(ArrayUtils.isNotEmpty(hits)) {
+			System.out.println(hits.length);
+			for(SearchHit searchHit : hits) {
+				System.out.println(searchHit.field("brandId").getValue());
+			}
+		}
+		
+		
+		
+		/*NativeSearchQueryBuilder searchQuery = new NativeSearchQueryBuilder();
+		BoolQueryBuilder qb = QueryBuilders.boolQuery();
+		if(StringUtils.isNotBlank(keyword)) {
+			keyword = keyword.trim();
+			qb.must(QueryBuilders.boolQuery()
+					.should(QueryBuilders.matchQuery("name", keyword)));
+			//qb.must(queryStringQuery(" name:" + keyword));
+		}
+		searchQuery.withQuery(qb);
+		searchQuery.withFields("brandId");//至查询某个字段
+		searchQuery.addAggregation(AggregationBuilders.terms("brandId"));//聚合函数
+		
+		Page<Keyword> page = elasticsearchTemplate.queryForPage(searchQuery.build(), Keyword.class);
+		logger.info("搜索记录条数:({})", page.getTotalElements());
+		if(page.getTotalElements() > 0) {
+			for(Keyword k : page.getContent()) {
+				logger.info("{}", k);
+			}
+		}*/
+		return list;
 	}
 }

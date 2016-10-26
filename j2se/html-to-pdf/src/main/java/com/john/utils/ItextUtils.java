@@ -2,6 +2,7 @@ package com.john.utils;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 
@@ -25,6 +26,10 @@ public class ItextUtils {
 	}
 	
 	public static Paragraph cnParagraph(String text, float size, int fontType) {
-		return new Paragraph(new Chunk(text, cnFont(14, Font.BOLDITALIC)));
+		return new Paragraph(new Chunk(text, cnFont(size, fontType)));
+	}
+	
+	public static Paragraph enParagraph(String text, float size, int fontType) {
+		return new Paragraph(new Chunk(text, FontFactory.getFont(FontFactory.HELVETICA, size, fontType)));
 	}
 }
