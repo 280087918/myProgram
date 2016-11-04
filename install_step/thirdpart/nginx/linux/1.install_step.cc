@@ -2,12 +2,12 @@ nginx是什么？
 
 
 1.安装前确保系统安装了以下组件
-  yum install g++ gcc openssl-devel pcre-devel zlib-devel
+  yum install -y g++ gcc openssl-devel pcre-devel zlib-devel
 
 2.到官网上下载tar文件
   本次用的是这个版本:nginx-1.9.15.tar.gz
   放到/usr/local下面并解压缩
-  tar zxvf nginx-1.9.15.tar.gz
+  tar zxvf nginx-1.9.15.tar.gz -C /usr/local
 
 3.进入nginx目录执行相关命令并配置
   cd nginx-1.9.15

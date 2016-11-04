@@ -22,3 +22,6 @@
   起停防火墙，重启后生效:
   chkconfig iptables on
   chkconfig iptables off
+
+7.查看某个端口是否在监听
+  netstat -apn|grep :8080

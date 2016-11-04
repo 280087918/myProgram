@@ -2,10 +2,13 @@
 实验背景:本地虚拟机
 实验目的:实现zookeeper集群
 
+注意:zookeeper的集群至少要部署三个点，要不然选举不出来主节点
+
 效果:
 打算在本机和其他ip都配置集群
-虚拟机1:master(192.168.1.78)
-虚拟机2:node1(192.168.1.92)
+虚拟机1:master(192.168.22.181)
+虚拟机2:node1(192.168.22.182)
+虚拟机3:node3(192.168.22.183)
 ============================================
 
 1.到apache官网下载相应版本的zookeeper
@@ -21,9 +24,10 @@
   cd /usr/local/zookeeper-3.4.8/conf
   cp zoo_sample.cfg zoo.cfg
   因为第一份我打算直接用来做master，所以端口我都不改了
-  因为我的dataDir不想用这个默认的目录，所以vi zoo.cfg
+  因为我的dataDir不想用这个默认的目录，
+  所以在zookeeper目录下创建data目录，并且vi zoo.cfg
   修改dataDir为如下
-  dataDir=/usr/local/zookeeper-3.4.8/tmp/zookeeper
+  dataDir=/usr/local/zookeeper-3.4.8/data
 
 5.运行zookeeper
   到bin目录下执行
@@ -44,15 +48,18 @@
 ---------------
 集群配置
 ---------------
-7.先配置master(192.168.1.78)
+7.先配置master(192.168.2.181)
   也就是刚才的那个文件夹
   先停止刚启动起来的master
   cd /usr/local/zookeeper-3.4.8/conf
   vi zoo.cfg
   在文件最后添加以下几行
-  #clouster config
-  server.1=192.168.1.78:2888:3888
-  server.2=192.168.1.92:2888:3888
+  2888是用来与集群中leader服务器交换信息的端口
+  3888是用来执行选举的服务端口
+  #cluster config
+  server.1=192.168.22.181:2888:3888
+  server.2=192.168.22.182:2888:3888
+  server.3=192.168.22.183:2888:3888
 
 8.修改master的serverid
   到达zookeeper的dataDir目录
@@ -63,27 +70,14 @@
   1
   保存退出
   
-9.将zookeeper跟目录打包并发送到其他node服务器做为节点服务器
-  cd /usr/local/
-  tar -zcvf zookeeper-3.4.8.tar.gz zookeeper-3.4.8.tar.gz
-  scp zookeeper-3.4.8.tar.gz root@192.168.1.92:/usr/local
+9.同理，其他节点也是一样，只不过myid不一样
+  比如server.2的节点myid就为2
 
-10.启动master的zookeeper，这里也就是192.168.1.78的zookeeper
-  日志在zookeeper的bin文件夹下
-  tail -f zookeeper.out
-  看到报错了。说招不到节点，这是正确的，因为子节点还没有启动起来
+10.启动节点zookeeper
 
-11.ssh到子节点的服务器(192.168.1.92)，并且到达刚传输过来的路径
-  cd /usr/local
-  解压缩刚传过来的包
-  tar -xzvf zookeeper-3.4.8.tar.gz
-
-12.修改myid
-  cd /usr/local/zookeeper-3.4.8/tmp/zookeeper
-  vim myid
-  输入2,保存推出
-
-13.启动节点zookeeper
+11.查看集群状态
+   zookeeper_root/bin/zkServer.sh status
+   可以看到当前节点的集群状态，可以看是不是leader
 
 注:
 1.zookeeper集群是用来做主从切换的，不是用来做高可用的

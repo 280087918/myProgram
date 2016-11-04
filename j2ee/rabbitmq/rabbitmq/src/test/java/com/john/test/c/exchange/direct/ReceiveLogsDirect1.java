@@ -24,7 +24,7 @@ static final String EXCHANGE_NAME = "zhc_direct_logs";
 	
 	public static void main(String[] args) throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("192.168.22.184");
+		factory.setHost("192.168.22.188");
 
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
