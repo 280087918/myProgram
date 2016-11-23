@@ -2,6 +2,8 @@ package com.john.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.data.elasticsearch.core.query.DeleteQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 
 import com.john.service.BasicService;
 
@@ -23,8 +26,20 @@ public abstract class BasicServiceImpl<T> implements BasicService<T> {
 	protected abstract void init();
 	
 	@Override
+	public boolean checkAndCreate(Class<?> clazz) {
+		if(!elasticsearchTemplate.indexExists(clazz)) {
+			elasticsearchTemplate.createIndex(clazz);
+			//elasticsearchTemplate.putMapping(clazz);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
 	public String persistObj(T t, String id) {
 		IndexQuery index = new IndexQueryBuilder().withId(id).withObject(t).build();
+		checkAndCreate(t.getClass());
 		elasticsearchTemplate.putMapping(t.getClass());
 		String result = elasticsearchTemplate.index(index);
 		return result;
@@ -40,11 +55,23 @@ public abstract class BasicServiceImpl<T> implements BasicService<T> {
 	}
 	
 	@Override
-	public List<T> findObjects(Class<T> clazz, String key, String value) {
+	public List<T> findObjects(Class<T> clazz, String key, Object value) {
 		Criteria criteria = Criteria.where(key).is(value);
 		CriteriaQuery criteriaQuery = new CriteriaQuery(criteria);
 		List<T> ts = elasticsearchTemplate.queryForList(criteriaQuery, clazz);
 		return ts;
+	}
+	
+	@Override
+	public List<T> matchObjects(Class<T> clazz, String key, String value) {
+		List<T> reList = null;
+		if(StringUtils.isNotBlank(key) && StringUtils.isNotBlank(value)) {
+			NativeSearchQueryBuilder searchQuery = new NativeSearchQueryBuilder();
+			BoolQueryBuilder qb = QueryBuilders.boolQuery().must(QueryBuilders.matchQuery(key, value));
+			searchQuery.withQuery(qb);
+			reList = elasticsearchTemplate.queryForList(searchQuery.build(), clazz);
+		}
+		return reList;
 	}
 	
 	@Override

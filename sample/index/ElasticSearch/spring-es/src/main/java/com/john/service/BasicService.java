@@ -6,7 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public interface BasicService<T> {
-	public Logger logger = LoggerFactory.getLogger(BasicService.class);
+public Logger logger = LoggerFactory.getLogger(BasicService.class);
+	
+	/**
+	 * 查询是否存在索引，不存在则创建
+	 * 	如果创建了索引，那么就返回true，没创建就返回false
+	 * @param clazz
+	 */
+	public boolean checkAndCreate(Class<?> clazz);
 	
 	/**
 	 * 存储单个对象
@@ -32,7 +39,17 @@ public interface BasicService<T> {
 	 * @param value
 	 * @return
 	 */
-	public List<T> findObjects(Class<T> clazz, String key, String value);
+	public List<T> findObjects(Class<T> clazz, String key, Object value);
+	
+	/**
+	 * 分词匹配，查询符合条件的对象结合
+	 * 	前提是搜索的字段必须是分词器分词的
+	 * @param clazz
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public List<T> matchObjects(Class<T> clazz, String key, String value);
 	
 	/**
 	 * 根据id删除对象

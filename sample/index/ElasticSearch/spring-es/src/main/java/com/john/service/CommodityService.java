@@ -1,11 +1,15 @@
 package com.john.service;
 
-import com.john.vo.Commodity;
+import java.util.List;
+import java.util.Map;
+
+import com.john.dto.Commodity;
 
 public interface CommodityService extends BasicService<Commodity> {
 	/**
-	 * 根据id更新销量
-	 * @param id
+	 * 搜索三板斧
+	 * @param params
+	 * @return
 	 */
-	public void updateBuyCountById(String id, Integer count);
+	public List<Commodity> searchList(Map<String, Object> params);
 }
