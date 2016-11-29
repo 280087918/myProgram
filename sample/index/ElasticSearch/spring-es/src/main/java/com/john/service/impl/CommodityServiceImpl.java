@@ -16,7 +16,10 @@ import com.john.dto.Commodity;
 import com.john.service.CommodityService;
 
 /**
- * minimumShouldMatch("75%"):搜索条件里面至少匹配75%，比如搜索"美的空调一匹",ik_smart会拆成三个词
+ * trick(1):minimumShouldMatch("75%"):搜索条件里面至少匹配75%，比如搜索"美的空调一匹",ik_smart会拆成三个词(美的、空调、一匹)
+ * 	可以理解为三个搜索条件的75%匹配。3*75%=2.25。向下取整=2。股需要匹配的字段中只要包含两个或以上的词就可以搜索出来。
+ * 
+ * trick(2):operator(Operator.AND):拆分的词以何种方式进行条件组装查询，一般默认都是OR只要有一个条件满足即可。AND意思就是拆分出来的词都要满足才能匹配出来
  * 	
  * @author zhang.hc
  * @date 2016年11月23日 下午4:28:57

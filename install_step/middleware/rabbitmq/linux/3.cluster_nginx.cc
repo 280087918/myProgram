@@ -86,6 +86,7 @@ vim /etc/sysconfig/network
 11.ngxin的tcp配置(184,185)
   因为我指定的读取的配置文件是安装目录下的nginx.conf，所以修改这里面的nginx.conf
     并调整为同目录的:3.cluster_nginx.conf中的代码。
+    启动nginx: sbin/nginx
 
 12.184和185都安装好keepalived
       yum install -y keepalived
