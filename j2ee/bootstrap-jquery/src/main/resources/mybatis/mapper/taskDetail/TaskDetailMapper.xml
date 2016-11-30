@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.john.taskDetail.dao.TaskDetailMapper">
+	<resultMap id="taskDetailRm" type="com.john.taskDetail.vo.TaskDetailVo">
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="optTime" column="opt_time" jdbcType="DATE"/>
+		<result property="isSign" column="is_sign" jdbcType="INTEGER"/>
+		<result property="taskId" column="task_id" jdbcType="VARCHAR"/>
+		<result property="signUser" column="sign_user" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="cols">
+		id, opt_time, is_sign, task_id, sign_user
+	</sql>
+     
+     <sql id="condition" >
+	    <if test="id != null and '' != id">
+        	and d.id = #{id,jdbcType=VARCHAR}
+      	</if>
+	    <if test="isSign != null and '' != isSign">
+        	and d.is_sign = #{isSign,jdbcType=VARCHAR}
+      	</if>
+	    <if test="taskId != null and '' != taskId">
+        	and d.task_id = #{taskId,jdbcType=VARCHAR}
+      	</if>
+	    <if test="signUser != null and '' != signUser">
+        	and d.sign_user = #{signUser,jdbcType=VARCHAR}
+      	</if>
+     </sql>
+	
+	<!-- 根据条件查询任务 -->
+	<select id="findTaskDetails" resultMap="taskDetailRm">
+		select <include refid="cols" /> from tbl_task_detail d where 1=1
+		<include refid="condition" />
+	</select>
+</mapper>

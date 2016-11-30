@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.john.task.dao.TaskMapper">
+	<resultMap id="taskRm" type="com.john.task.vo.TaskVo">
+		<result property="id" column="id" jdbcType="VARCHAR"/>
+		<result property="ceateDate" column="create_date" jdbcType="DATE"/>
+		<result property="beginDate" column="begin_date" jdbcType="DATE"/>
+		<result property="endDate" column="end_date" jdbcType="DATE"/>
+		<result property="totalDateCount" column="total_date_count" jdbcType="INTEGER"/>
+		<result property="alreadyDateCount" column="already_date_count" jdbcType="INTEGER"/>
+		<result property="perDateCount" column="per_date_count" jdbcType="INTEGER"/>
+		<result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+		<result property="deleteFlag" column="delete_flag" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<sql id="cols">
+		id, create_date, begin_date, end_date, total_date_count, already_date_count, per_date_count, create_user, delete_flag
+	</sql>
+     
+     <sql id="condition" >
+	    <if test="id != null and '' != id">
+        	and t.id = #{id,jdbcType=VARCHAR}
+      	</if>
+	    <if test="createUser != null and '' != createUser">
+        	and t.create_user = #{createUser,jdbcType=VARCHAR}
+      	</if>
+	    <if test="deleteFlag != null and '' != deleteFlag">
+        	and t.delete_flag = #{deleteFlag,jdbcType=VARCHAR}
+      	</if>
+     </sql>
+	
+	<!-- 根据条件查询任务 -->
+	<select id="findTasks" resultMap="taskRm">
+		select <include refid="cols" /> from tbl_task t where 1=1
+		<include refid="condition" />
+	</select>
+</mapper>

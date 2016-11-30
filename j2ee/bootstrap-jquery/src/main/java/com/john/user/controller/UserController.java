@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.john.controller.BasicController;
+import com.john.system.controller.BasicController;
 import com.john.user.service.UserService;
 import com.john.user.vo.UserVo;
 
@@ -24,11 +23,5 @@ public class UserController extends BasicController {
 		logger.info("users{}", users);
 		modelMap.put("users", users);
 		return "user/list";
-	}
-	
-	@RequestMapping("login")
-	@ResponseBody
-	public String login(ModelMap modelMap) {
-		return "system/index";
 	}
 }

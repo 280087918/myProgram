@@ -10,16 +10,17 @@
 	<sql id="cols">
 		id, name, password
 	</sql>
-	
-	<sql id="condition" >
-	    <if test="null!=params" >
-	      <if test="params.id != null and '' != params.id" >
-	        and u.id = #{params.id,jdbcType=VARCHAR}
-	      </if>
-	      <if test="params.name != null and '' != params.name" >
-	        and u.id = #{params.name,jdbcType=VARCHAR}
-	      </if>
-	     </if>
+     
+     <sql id="condition" >
+	    <if test="id != null and '' != id" >
+        	and u.id = #{id,jdbcType=VARCHAR}
+      	</if>
+      	<if test="name != null and '' != name" >
+        	and u.name = #{name,jdbcType=VARCHAR}
+      	</if>
+      	<if test="password != null and '' != password" >
+        	and u.password = #{password,jdbcType=VARCHAR}
+      	</if>
      </sql>
 	
 	<!-- 保存用户
@@ -33,7 +34,7 @@
 	</select>
 	
 	<!-- 根据条件查询用户 -->
-	<select id="findById" resultMap="userRm">
+	<select id="findUsers" resultMap="userRm">
 		select <include refid="cols" /> from tbl_user u where 1=1
 		<include refid="condition" />
 	</select>

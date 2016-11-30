@@ -64,11 +64,16 @@
 <script type="text/javascript" src="${basePath !}/asset/js/bootstrap.min.js" ></script>
 </head>
 <body>
+<input type="hidden" name="basePath" value="${basePath !}" id="basePath" />
 <div style="text-align:center;margin:2px 0; font:normal 25px 'MicroSoft YaHei';">
 	<p class="bg-primary">欢迎光临本站</p>
 
 	<div class="navbar-header">
-       <a class="navbar-brand btn_login" href="#">登录</a>
+		<#if userVo??>
+			<a class="navbar-brand">欢迎，${userVo.name !}</a>
+		<#else>
+       		<a class="navbar-brand btn_login" href="javascript:void(0);">登录</a>
+		</#if>
     </div>
 </div>
 <div class="main">
@@ -105,19 +110,19 @@
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin: 10% 0;">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" style="background-color:#2c3b4e;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">登录</h4>
+				<h4 class="modal-title" id="myModalLabel" style="color:white;">登录</h4>
 			</div>
 			<div class="modal-body">
 				<form role="form">
 					<div class="form-group">
-						<label for="loginName">账户:</label>
+						<label for="loginName" style="color:white;">账户:</label>
 						<input type="text" class="form-control" id="loginName" placeholder="请输入账户信息">
 					</div>
 					<div class="form-group">
-						<label for="password">密码:</label>
+						<label for="password" style="color:white;">密码:</label>
 						<input type="password" class="form-control" id="password" placeholder="请输入密码">
 					</div>
 				</form>
@@ -144,8 +149,29 @@
 	});
 
 	$(".btn_login_sub").click(function(){
-		alert("登录中......");
-		$("#myModal").modal('hide');
+		$.post({
+			url:$("#basePath").val() + "/login.sc",
+			type: "POST",
+			data:{
+				"userName" : $("#loginName").val(),
+				"password" : $("#password").val()
+			},
+			dataType:"json",//返回值的类型
+			success:function(result) {
+				if(result){
+                    if("SUCCESS"==result.status) {
+                    	var myResult = eval("(" + result.jsonResult + ")");
+                    	//$(".navbar-brand").removeClass("btn_login");
+                    	$(".navbar-header").html("<a class='navbar-brand'>欢迎，" + myResult.name + "</a>");
+						$("#myModal").modal('hide');
+                    } else {
+                    	alert("用户名密码错误.");
+                    }
+                }else{
+                    alert("不可以");
+                }
+			}
+		});
 	});
 </script>
 
