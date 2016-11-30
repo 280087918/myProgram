@@ -40,4 +40,12 @@ insert into `tbl_task`(`id`,`create_date`,`begin_date`,`end_date`,`total_date_co
 insert into `tbl_task_detail`(`id`,`opt_time`,`is_sign`,`task_id`,`sign_user`)
 	values('f363888a66c54aaba37bbf5b66360617','2016-11-30 08:00:00',1,'d06375d6cf194127ac9c7d553a556ced','zhanghc');
 insert into `tbl_task_detail`(`id`,`opt_time`,`is_sign`,`task_id`,`sign_user`)
-	values('1c887fc75fe747de85c1cfddfc2e3360','2016-11-30 12:00:00',0,'d06375d6cf194127ac9c7d553a556ced','zhanghc');
+	values('1c887fc75fe747de85c1cfddfc2e3360','2016-11-30 10:01:00',0,'d06375d6cf194127ac9c7d553a556ced','zhanghc');
+insert into `tbl_task_detail`(`id`,`opt_time`,`is_sign`,`task_id`,`sign_user`)
+	values('8b6b8dcb3e6c47ff970772f163a3b72e','2016-11-30 14:10:00',1,'d06375d6cf194127ac9c7d553a556ced','zhanghc');
+insert into `tbl_task_detail`(`id`,`opt_time`,`is_sign`,`task_id`,`sign_user`)
+	values('ae72624c45bd43ea94611abfbda4968a','2016-11-30 16:05:00',0,'d06375d6cf194127ac9c7d553a556ced','zhanghc');
+insert into `tbl_task_detail`(`id`,`opt_time`,`is_sign`,`task_id`,`sign_user`)
+	values('8dc09112eb944f429b8ebbc161473051','2016-11-30 18:00:00',1,'d06375d6cf194127ac9c7d553a556ced','zhanghc');
+insert into `tbl_task_detail`(`id`,`opt_time`,`is_sign`,`task_id`,`sign_user`)
+	values('7b803916c3af4e408386dda62ee0779d','2016-11-30 20:00:00',1,'d06375d6cf194127ac9c7d553a556ced','zhanghc');

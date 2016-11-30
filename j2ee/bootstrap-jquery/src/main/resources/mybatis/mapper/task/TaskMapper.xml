@@ -3,9 +3,9 @@
 <mapper namespace="com.john.task.dao.TaskMapper">
 	<resultMap id="taskRm" type="com.john.task.vo.TaskVo">
 		<result property="id" column="id" jdbcType="VARCHAR"/>
-		<result property="ceateDate" column="create_date" jdbcType="DATE"/>
-		<result property="beginDate" column="begin_date" jdbcType="DATE"/>
-		<result property="endDate" column="end_date" jdbcType="DATE"/>
+		<result property="ceateDate" column="create_date" jdbcType="TIMESTAMP"/>
+		<result property="beginDate" column="begin_date" jdbcType="TIMESTAMP"/>
+		<result property="endDate" column="end_date" jdbcType="TIMESTAMP"/>
 		<result property="totalDateCount" column="total_date_count" jdbcType="INTEGER"/>
 		<result property="alreadyDateCount" column="already_date_count" jdbcType="INTEGER"/>
 		<result property="perDateCount" column="per_date_count" jdbcType="INTEGER"/>
@@ -33,5 +33,11 @@
 	<select id="findTasks" resultMap="taskRm">
 		select <include refid="cols" /> from tbl_task t where 1=1
 		<include refid="condition" />
+	</select>
+	
+	<select id="findCurrentTask" resultMap="taskRm">
+		select <include refid="cols" /> from tbl_task t where t.create_user=#{createUser}
+		and <![CDATA[t.begin_date < #{currentDate} and t.end_date > #{currentDate} ]]>
+		and t.delete_flag=0
 	</select>
 </mapper>

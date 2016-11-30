@@ -84,18 +84,48 @@
 					<p>总进度:</p>
 				</div>
 				<div class="progress">
-					<div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 85%;">
-						<div class="progress-value">85%</div>
-					</div>
+					<#if totalPercent??>
+						<#if totalPercent lt 0.25>
+							<div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: ${totalPercent*100}%;">
+						<#elseif (totalPercent gt 0.25)&&( totalPercent lt 0.5) >
+							<div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: ${totalPercent*100}%;">
+						<#elseif (totalPercent gt 0.5)&&( totalPercent lt 0.75) >
+							<div class="progress-bar progress-bar-info progress-bar-striped active" style="width: ${totalPercent*100}%;">
+						<#else>
+							<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: ${totalPercent*100}%;">
+						</#if>
+						
+							<div class="progress-value">${totalPercent*100}%</div>
+						</div>
+					<#else>
+						<div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 0%;">
+							<div class="progress-value">0%</div>
+						</div>
+					</#if>
 				</div>
 
 				<div style="font:normal 14px/24px 'MicroSoft YaHei';color:white;">
 					<p>当天进度:</p>
 				</div>
 				<div class="progress">
-					<div class="progress-bar progress-bar-danger progress-bar-striped active daily" style="width: 60%;">
-						<div class="progress-value">60%</div>
-					</div>
+					<#if datePercent??>
+						<#if datePercent lt 0.25>
+							<div class="progress-bar progress-bar-danger progress-bar-striped active daily" style="width: ${datePercent*100}%;">
+						<#elseif (datePercent gt 0.25)&&( datePercent lt 0.5) >
+							<div class="progress-bar progress-bar-warning progress-bar-striped active daily" style="width: ${datePercent*100}%;">
+						<#elseif (datePercent gt 0.5)&&( datePercent lt 0.75) >
+							<div class="progress-bar progress-bar-info progress-bar-striped active daily" style="width: ${datePercent*100}%;">
+						<#else>
+							<div class="progress-bar progress-bar-success progress-bar-striped active daily" style="width: ${datePercent*100}%;">
+						</#if>
+						
+							<div class="progress-value">${datePercent*100}%</div>
+						</div>
+					<#else>
+						<div class="progress-bar progress-bar-info progress-bar-striped active daily" style="width: 0%;">
+							<div class="progress-value">0%</div>
+						</div>
+					</#if>
 				</div>
 			</div>
 		</div>
@@ -164,6 +194,8 @@
                     	//$(".navbar-brand").removeClass("btn_login");
                     	$(".navbar-header").html("<a class='navbar-brand'>欢迎，" + myResult.name + "</a>");
 						$("#myModal").modal('hide');
+						
+						location.href=$("#basePath").val()+"/index.sc";
                     } else {
                     	alert("用户名密码错误.");
                     }

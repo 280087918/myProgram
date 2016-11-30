@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +22,15 @@ public class TaskDaoTest extends BasicTest {
 		params.put("createUser", "zhanghc");
 		params.put("deleteFlag", "0");
 		List<TaskVo> taskVos = taskMapper.findTasks(params);
+		logger.info("{}", taskVos);
+	}
+	
+	@Test
+	public void testFindCurrent() {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("createUser", "zhanghc");
+		params.put("currentDate", DateTime.now().toDate());
+		List<TaskVo> taskVos = taskMapper.findCurrentTask(params);
 		logger.info("{}", taskVos);
 	}
 }

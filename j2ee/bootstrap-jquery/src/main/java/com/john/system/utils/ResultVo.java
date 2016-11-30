@@ -15,4 +15,7 @@ public class ResultVo {
 	private String status;
 	
 	private String jsonResult;
+	
+	//提示信息
+	private String msg;
 }

@@ -3,14 +3,14 @@
 <mapper namespace="com.john.taskDetail.dao.TaskDetailMapper">
 	<resultMap id="taskDetailRm" type="com.john.taskDetail.vo.TaskDetailVo">
 		<result property="id" column="id" jdbcType="VARCHAR"/>
-		<result property="optTime" column="opt_time" jdbcType="DATE"/>
+		<result property="optTime" column="opt_time" jdbcType="TIMESTAMP"/>
 		<result property="isSign" column="is_sign" jdbcType="INTEGER"/>
 		<result property="taskId" column="task_id" jdbcType="VARCHAR"/>
 		<result property="signUser" column="sign_user" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<sql id="cols">
-		id, opt_time, is_sign, task_id, sign_user
+		d.id, d.opt_time, d.is_sign, d.task_id, d.sign_user
 	</sql>
      
      <sql id="condition" >
@@ -32,5 +32,16 @@
 	<select id="findTaskDetails" resultMap="taskDetailRm">
 		select <include refid="cols" /> from tbl_task_detail d where 1=1
 		<include refid="condition" />
+	</select>
+	
+	<select id="findCurrentLastUnsignDetail" resultMap="taskDetailRm">
+		select <include refid="cols" /> from tbl_task_detail d where
+		 d.opt_time=(select max(d2.opt_time) 
+		 from tbl_task_detail d2 where d2.is_sign=0 and d2.task_id=#{taskId}
+		 and <![CDATA[d2.opt_time > #{currentDate} ]]>)
+	</select>
+	
+	<select id="findCurrentSignDetail" resultMap="taskDetailRm">
+		select <include refid="cols" /> from tbl_task_detail d where d.task_id=#{taskId} and d.is_sign=1 and <![CDATA[d.opt_time > #{requestDate} ]]>
 	</select>
 </mapper>
