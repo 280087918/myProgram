@@ -87,9 +87,9 @@
 					<#if totalPercent??>
 						<#if totalPercent lt 0.25>
 							<div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: ${totalPercent*100}%;">
-						<#elseif (totalPercent gt 0.25)&&( totalPercent lt 0.5) >
+						<#elseif (totalPercent gte 0.25)&&( totalPercent lt 0.5) >
 							<div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: ${totalPercent*100}%;">
-						<#elseif (totalPercent gt 0.5)&&( totalPercent lt 0.75) >
+						<#elseif (totalPercent gte 0.5)&&( totalPercent lt 0.75) >
 							<div class="progress-bar progress-bar-info progress-bar-striped active" style="width: ${totalPercent*100}%;">
 						<#else>
 							<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: ${totalPercent*100}%;">
@@ -111,9 +111,9 @@
 					<#if datePercent??>
 						<#if datePercent lt 0.25>
 							<div class="progress-bar progress-bar-danger progress-bar-striped active daily" style="width: ${datePercent*100}%;">
-						<#elseif (datePercent gt 0.25)&&( datePercent lt 0.5) >
+						<#elseif (datePercent gte 0.25)&&( datePercent lt 0.5) >
 							<div class="progress-bar progress-bar-warning progress-bar-striped active daily" style="width: ${datePercent*100}%;">
-						<#elseif (datePercent gt 0.5)&&( datePercent lt 0.75) >
+						<#elseif (datePercent gte 0.5)&&( datePercent lt 0.75) >
 							<div class="progress-bar progress-bar-info progress-bar-striped active daily" style="width: ${datePercent*100}%;">
 						<#else>
 							<div class="progress-bar progress-bar-success progress-bar-striped active daily" style="width: ${datePercent*100}%;">
