@@ -17,7 +17,7 @@
 	    <if test="id != null and '' != id">
         	and d.id = #{id,jdbcType=VARCHAR}
       	</if>
-	    <if test="isSign != null and '' != isSign">
+	    <if test="isSign != null">
         	and d.is_sign = #{isSign,jdbcType=VARCHAR}
       	</if>
 	    <if test="taskId != null and '' != taskId">
@@ -44,4 +44,16 @@
 	<select id="findCurrentSignDetail" resultMap="taskDetailRm">
 		select <include refid="cols" /> from tbl_task_detail d where d.task_id=#{taskId} and d.is_sign=1 and <![CDATA[d.opt_time > #{requestDate} ]]>
 	</select>
+	
+	<select id="findSignDetailByTime" resultMap="taskDetailRm">
+		select <include refid="cols" /> from tbl_task_detail d where d.task_id=#{taskId}
+		 and <![CDATA[d.opt_time > #{beginDate} ]]> and <![CDATA[d.opt_time < #{endDate} ]]>
+		 <if test="isSign != null">
+        	and d.is_sign = #{isSign}
+      	</if>
+	</select>
+	
+	<insert id="saveObj">
+		insert into tbl_task_detail(`id`,`opt_time`,`is_sign`,`task_id`,`sign_user`) values(#{id}, #{optTime}, #{isSign}, #{taskId}, #{signUser})
+	</insert>
 </mapper>

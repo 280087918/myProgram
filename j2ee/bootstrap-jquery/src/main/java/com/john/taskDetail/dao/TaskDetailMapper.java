@@ -21,4 +21,16 @@ public interface TaskDetailMapper {
 	 * @return
 	 */
 	public List<TaskDetailVo> findCurrentSignDetail(Map<String, Object> params);
+	
+	/**
+	 * 根据时间区间查找是否有已经签到的记录
+	 * @param params taskId beginDate endDate
+	 * @return
+	 */
+	public List<TaskDetailVo> findSignDetailByTime(Map<String, Object> params);
+	
+	/**
+	 * 保存签到明细对象
+	 */
+	public void saveObj(TaskDetailVo taskDetailVo);
 }

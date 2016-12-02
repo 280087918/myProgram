@@ -40,4 +40,16 @@
 		and <![CDATA[t.begin_date < #{currentDate} and t.end_date > #{currentDate} ]]>
 		and t.delete_flag=0
 	</select>
+	
+	<update id="clearAlreadyCount">
+		update tbl_task t set t.already_date_count='0' where t.id=#{taskId}
+	</update>
+	
+	<select id="findValidTask" resultMap="taskRm">
+		select <include refid="cols" /> from tbl_task t where t.delete_flag='0' and <![CDATA[t.end_date >#{currentDate} ]]>
+	</select>
+	
+	<update id="addAlreadyCount">
+		update tbl_task t set t.already_date_count=(t.already_date_count + 1) where t.id=#{taskId}
+	</update>
 </mapper>

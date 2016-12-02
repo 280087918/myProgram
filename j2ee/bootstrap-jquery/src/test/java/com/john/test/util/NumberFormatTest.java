@@ -14,4 +14,9 @@ public class NumberFormatTest {
 		DecimalFormat df = new DecimalFormat("0.00");//格式化小数
 		System.out.println(df.format(num));
 	}
+	
+	@Test
+	public void test1() {
+		System.out.println((7/2));
+	}
 }

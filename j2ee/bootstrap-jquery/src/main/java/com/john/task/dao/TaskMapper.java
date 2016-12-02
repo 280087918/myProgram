@@ -14,4 +14,22 @@ public interface TaskMapper {
 	 * @return
 	 */
 	public List<TaskVo> findCurrentTask(Map<String, Object> params);
+	
+	/**
+	 * 清除已签到次数
+	 */
+	public void clearAlreadyCount(String taskId);
+	
+	/**
+	 * 根据当前时间获取所有有效的任务
+	 * @param params
+	 * @return
+	 */
+	public List<TaskVo> findValidTask(Map<String, Object> params);
+	
+	/**
+	 * 已签到次数在主任务上增加一天
+	 * @param taskId
+	 */
+	public void addAlreadyCount(String taskId);
 }

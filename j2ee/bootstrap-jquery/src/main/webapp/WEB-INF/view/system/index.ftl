@@ -169,9 +169,45 @@
 <script type="text/javascript">
 	//签到按钮点击事件
 	$(".btn_sign").click(function() {
-		$(".daily").width("70%");
-		$(".daily").removeClass("progress-bar-danger").addClass("progress-bar-warning");
-		$(".daily").children("div").html("70%");
+		$.post({
+			url:$("#basePath").val() + "/taskDetail/sign.sc",
+			type: "POST",
+			dataType:"json",//返回值的类型
+			success:function(result) {
+				if(result){
+                    if("SUCCESS"==result.status) {
+						location.href=$("#basePath").val()+"/index.sc";
+                    } else {
+                    	alert(result.msg);
+                    }
+                }else{
+                    alert("发生异常!");
+                }
+			}
+		});
+	
+		//$(".daily").width("70%");
+		//$(".daily").removeClass("progress-bar-danger").addClass("progress-bar-warning");
+		//$(".daily").children("div").html("70%");
+	});
+	
+	$(".btn_clear").click(function() {
+		$.post({
+			url:$("#basePath").val() + "/taskDetail/clear.sc",
+			type: "POST",
+			dataType:"json",//返回值的类型
+			success:function(result) {
+				if(result){
+                    if("SUCCESS"==result.status) {
+						location.href=$("#basePath").val()+"/index.sc";
+                    } else {
+                    	alert(result.msg);
+                    }
+                }else{
+                    alert("发生异常!");
+                }
+			}
+		});
 	});
 
 	$(".btn_login").click(function(){
@@ -200,7 +236,7 @@
                     	alert("用户名密码错误.");
                     }
                 }else{
-                    alert("不可以");
+                    alert("发生异常!");
                 }
 			}
 		});
