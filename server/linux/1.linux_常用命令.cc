@@ -25,3 +25,11 @@
 
 7.查看某个端口是否在监听
   netstat -apn|grep :8080
+
+8.设置时区
+  date -R看一下当前时区和时间信息
+  先执行命令tzselect，按照提示，到最后会有这么一段
+  TZ='Asia/Shanghai'; export TZ
+  将这一段复制到/etc/profile里面
+  并且执行source /etc/profile
+  完成后重新登录，并且输入date -R即可看到已经修改
