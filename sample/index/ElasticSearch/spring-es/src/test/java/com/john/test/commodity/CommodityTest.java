@@ -17,18 +17,33 @@ public class CommodityTest extends BaseTest {
 	@Autowired
 	CommodityService commodityService;
 	
-	@Test//插入单条商品数据
+	@Test//插入单条商品数据,验证数据是否能正常录入
 	public void saveCommodity() {
 		Commodity commodity = new Commodity("034bd8cba5d94694a8763e8b5de45eee", "掌上明珠 电视TG2156-X  (2035-2400)mm*350mm*415mm", 15);
+		commodity.addStock("city1");
+		commodityService.persistObj(commodity, commodity.getGoodsId());
+	}
+	
+	@Test//插入多调数据
+	public void saveCommoditys() {
+		Commodity commodity = new Commodity("034bd8cba5d94694a8763e8b5de45eee", "掌上明珠 电视TG2156-X  (2035-2400)mm*350mm*415mm", 15);
+		commodity.addStock("CGC");
 		commodityService.persistObj(commodity, commodity.getGoodsId());
 		
 		commodity = new Commodity("99f81153bf5c434e9e254506f815317a", "足球、篮球、皮马、游泳圈、自行车等多功能小气筒", 15);
 		commodityService.persistObj(commodity, commodity.getGoodsId());
 		
 		commodity = new Commodity("9a3d441461c64d099e1c8254aeb982cc", "秦歌多功能唱戏机QG-632 红色(附送内存卡一张)", 10);
+		commodity.addStock("CGC");
 		commodityService.persistObj(commodity, commodity.getGoodsId());
 		
 		commodity = new Commodity("df631bc683cd46c7b3dbb658098f48c7", "在线少女生理内裤 浅紫 均码 5216", 13);
+		commodity.addStock("ZXC_CGC");
+		commodity.addStock("WSC");
+		commodityService.persistObj(commodity, commodity.getGoodsId());
+		
+		commodity = new Commodity("44bb0b13410841689583646178d22880", "爱念7377男童平角内裤 绿色XL#", 16);
+		commodity.addStock("ZXC");
 		commodityService.persistObj(commodity, commodity.getGoodsId());
 	}
 	
@@ -62,7 +77,8 @@ public class CommodityTest extends BaseTest {
 	@Test//根据条件搜索集合，目前主要是调优搜索特性
 	public void searchCommodity() {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("keywords", "均瑶 味动力");
+		params.put("keywords", "内裤");
+		params.put("stockCode", "ZXC_CGC");
 		List<Commodity> commoditys = commodityService.searchList(params);
 		if(CollectionUtils.isNotEmpty(commoditys)) {
 			for(Commodity commodity : commoditys) {

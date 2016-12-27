@@ -41,6 +41,9 @@ public class CommodityServiceImpl extends BasicServiceImpl<Commodity> implements
 		//搜索关键词
 		String keywords = params.get("keywords") == null ? "" : (String) params.get("keywords");
 		
+		//库存搜索
+		String stockCode = params.get("stockCode") == null ? "" : (String) params.get("stockCode");
+		
 		NativeSearchQueryBuilder searchQuery = new NativeSearchQueryBuilder();
 		BoolQueryBuilder qb = QueryBuilders.boolQuery();
 		
@@ -48,6 +51,10 @@ public class CommodityServiceImpl extends BasicServiceImpl<Commodity> implements
 			keywords = keywords.trim();
 			qb.must(QueryBuilders.boolQuery()
 					.should(QueryBuilders.matchQuery("name", keywords).minimumShouldMatch("75%")));
+		}
+		
+		if(StringUtils.isNotBlank(stockCode)){
+			qb.must(QueryBuilders.matchQuery("stock", stockCode));
 		}
 		
 		searchQuery.withQuery(qb);

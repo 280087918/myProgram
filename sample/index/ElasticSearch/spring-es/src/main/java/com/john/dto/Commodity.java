@@ -1,5 +1,8 @@
 package com.john.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -41,4 +44,25 @@ public class Commodity {
 	@Field(type=FieldType.Integer)
 	@NonNull
 	private Integer buyCount;
+	
+	/**
+	 * 库存,有库存的存储其cityId,无库存的删除其cityId
+	 * String:cityId
+	 */
+	@Field(type=FieldType.String)
+	private List<String> stock = new ArrayList<String>();
+	
+	//某个城市设置为有库存
+	public void addStock(String cityId) {
+		if(!this.stock.contains(cityId)) {
+			this.stock.add(cityId);
+		}
+	}
+	
+	//某个城市设置为无库存
+	public void removeStock(String cityId) {
+		if(this.stock.contains(cityId)) {
+			this.stock.remove(cityId);
+		}
+	}
 }
