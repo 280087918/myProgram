@@ -1,7 +1,7 @@
 vagrant虚拟机搭建
 
 1.先下载VirtualBox-5.0.20-106931-Win.exe
-  http://downloads.vagrantup.com/
+  https://www.virtualbox.org
   并安装
 
 2.下载vagrant组件，以使用vagrant命令
