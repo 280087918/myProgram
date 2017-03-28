@@ -30,6 +30,11 @@ http://www.yiibai.com/mongodb/mongodb_quick_guide.html
 7.关闭服务
   ./mongod -dbpath=/mongo/data -logpath=/mongo/logs/mongod.log --shutdown
 
+8.验证服务是否正确启用
+  mongo的bin目录下启动mongo客户端
+  ./mongo
+  show dbs
+
 8.出现异常
   ERROR: child process failed, exited with error number 1
   网上说是之前的mongo进程没有正确关闭
