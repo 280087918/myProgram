@@ -1,61 +1,61 @@
-vagrantĞéÄâ»ú´î½¨
+vagrantè™šæ‹Ÿæœºæ­å»º
 
-1.ÏÈÏÂÔØVirtualBox-5.0.20-106931-Win.exe
+1.å…ˆä¸‹è½½VirtualBox-5.0.20-106931-Win.exe
   https://www.virtualbox.org
-  ²¢°²×°
+  å¹¶å®‰è£…
 
-2.ÏÂÔØvagrant×é¼ş£¬ÒÔÊ¹ÓÃvagrantÃüÁî
+2.ä¸‹è½½vagrantç»„ä»¶ï¼Œä»¥ä½¿ç”¨vagrantå‘½ä»¤(ä¸è¦ç”¨1.8çš„vagrantï¼Œè‡³å°‘ç”¨1.9çš„ï¼Œ1.8çš„ä¼šæœ‰bug)
   https://www.vagrantup.com/downloads.html
-  °²×°ÍêÖ®ºó¾Í¿ÉÒÔÓÃvagrantÃüÁîÁË£¬²»¹ıÒªÖØÆô»úÆ÷
+  å®‰è£…å®Œä¹‹åå°±å¯ä»¥ç”¨vagrantå‘½ä»¤äº†ï¼Œä¸è¿‡è¦é‡å¯æœºå™¨
 
-3.ÏÂÔØcentos-6.6-x86_64.box
-  ²¢·ÅÖÃÔÚ±¾»úÄ¿Â¼ÏÂ
+3.ä¸‹è½½centos-6.6-x86_64.box
+  å¹¶æ”¾ç½®åœ¨æœ¬æœºç›®å½•ä¸‹
 	E:\virtual_linux\_vagrant_centos6.4
 
-4.µ½´ïÉÏÃæµÄÄ¿Â¼²¢Ö´ĞĞÃüÁî
+4.åˆ°è¾¾ä¸Šé¢çš„ç›®å½•å¹¶æ‰§è¡Œå‘½ä»¤
   vagrant box add _centos6.6 centos-6.6-x86_64.box
 
-5.²é¿´boxÁĞ±í
+5.æŸ¥çœ‹boxåˆ—è¡¨
   vagrant box list
 
-6.³õÊ¼»¯vagrant
+6.åˆå§‹åŒ–vagrant
   vagrant init _centos6.6
 
-7.¿´µ½Í¬¼¶Ä¿Â¼ÏÂ³öÏÖVagrantfileÕâ¸öÎÄ¼ş¼´ÊÇ³É¹¦µÄ
+7.çœ‹åˆ°åŒçº§ç›®å½•ä¸‹å‡ºç°Vagrantfileè¿™ä¸ªæ–‡ä»¶å³æ˜¯æˆåŠŸçš„
 
-8.Æô¶¯ĞéÄâ»ú
+8.å¯åŠ¨è™šæ‹Ÿæœº
   vagrant up
 
-9.ĞéÄâ»úÔÊĞísshµÇÂ¼
+9.è™šæ‹Ÿæœºå…è®¸sshç™»å½•
   vagrant ssh
 
-10.sshµÇÂ¼
-   ip:127.0.0.1 ¶Ë¿Ú2222
-   vagrant/root ÃÜÂëvagrant
+10.sshç™»å½•
+   ip:127.0.0.1 ç«¯å£2222
+   vagrant/root å¯†ç vagrant
 
-11.Ìí¼ÓÍøÂçip
-   ½øÈëboxÄ¿Â¼E:\virtual_linux\_vagrant_centos6.4
-   ±à¼­Vagrantfile
-   ´ò¿ªÕâĞĞ×¢ÊÍ
+11.æ·»åŠ ç½‘ç»œip
+   è¿›å…¥boxç›®å½•E:\virtual_linux\_vagrant_centos6.4
+   ç¼–è¾‘Vagrantfile
+   æ‰“å¼€è¿™è¡Œæ³¨é‡Š
    config.vm.network "public_network"
 
-12.ÆğÍ£ĞéÄâ»ú
-   Æô¶¯:vagrant up
-   Í£Ö¹:vagrant halt
-   ÖØÆô:vagrant reload
+12.èµ·åœè™šæ‹Ÿæœº
+   å¯åŠ¨:vagrant up
+   åœæ­¢:vagrant halt
+   é‡å¯:vagrant reload
 
-13.°²×°ÍêÖ®ºó²é¿´ÓïÑÔ£¬ÓĞ¿ÉÄÜÊÇÆäËûÓïÑÔµÄ£¬ÎÒ¿´ÁËÒ»ÏÂ£¬¾Í¸øÎÒ×°µÄµÂÓïµÄ
-   ²é¿´µ±Ç°linuxÏµÍ³ÓïÑÔ:echo $LANG
-   ²é¿´ÏµÍ³ÖĞÓĞÃ»ÓĞÖĞÎÄÓïÑÔ°ü:locale,Èç¹ûÓĞzh_CNÄÇÃ´¾ÍÊÇÓĞÖĞÎÄÓïÑÔ°ü
-   Èç¹ûÃ»ÓĞ£¬ÄÇÃ´¾ÍÍ¨¹ıyumÏÂÔØ:yum groupinstall chinese-support
-   ½«ÏµÍ³ÓïÑÔĞŞ¸ÄÎªÖĞÎÄ:
+13.å®‰è£…å®Œä¹‹åæŸ¥çœ‹è¯­è¨€ï¼Œæœ‰å¯èƒ½æ˜¯å…¶ä»–è¯­è¨€çš„ï¼Œæˆ‘çœ‹äº†ä¸€ä¸‹ï¼Œå°±ç»™æˆ‘è£…çš„å¾·è¯­çš„
+   æŸ¥çœ‹å½“å‰linuxç³»ç»Ÿè¯­è¨€:echo $LANG
+   æŸ¥çœ‹ç³»ç»Ÿä¸­æœ‰æ²¡æœ‰ä¸­æ–‡è¯­è¨€åŒ…:locale,å¦‚æœæœ‰zh_CNé‚£ä¹ˆå°±æ˜¯æœ‰ä¸­æ–‡è¯­è¨€åŒ…
+   å¦‚æœæ²¡æœ‰ï¼Œé‚£ä¹ˆå°±é€šè¿‡yumä¸‹è½½:yum groupinstall chinese-support
+   å°†ç³»ç»Ÿè¯­è¨€ä¿®æ”¹ä¸ºä¸­æ–‡:
 	vi  /etc/sysconfig/i18n
 	LANG="zh_CN.UTF-8"
-   ĞŞ¸ÄºÃÖ®ºóÖØÆôÏµÍ³
+   ä¿®æ”¹å¥½ä¹‹åé‡å¯ç³»ç»Ÿ
 
-14.×ö¶à¸öĞéÄâ»ú
-   ½«boxÎÄ¼şcopyµ½Ò»¸öĞÂµÄÄ¿Â¼£¬²¢ÇÒ´Ó²½Öè4¿ªÊ¼ÍùÏÂÅäÖÃ£¬Ôò¿ÉÒÔµÃµ½ĞÂµÄĞéÄâ»ú
+14.åšå¤šä¸ªè™šæ‹Ÿæœº
+   å°†boxæ–‡ä»¶copyåˆ°ä¸€ä¸ªæ–°çš„ç›®å½•ï¼Œå¹¶ä¸”ä»æ­¥éª¤4å¼€å§‹å¾€ä¸‹é…ç½®ï¼Œåˆ™å¯ä»¥å¾—åˆ°æ–°çš„è™šæ‹Ÿæœº
 
 to be continue......
 http://jingyan.baidu.com/album/c1a3101eb2b8dbde656deb32.html?picindex=3
-¸Ï½Å²»Ì«ºÃÓÃ
+èµ¶è„šä¸å¤ªå¥½ç”¨
