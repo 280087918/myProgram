@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/jee  http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd"
+	default-lazy-init="false">
+	
+	<bean id="quartzTask" class="com.john.task.QuartzTask"/>
+	
+	<bean id="methodInvoke" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	    <property name="targetObject" ref="quartzTask" />
+	    <property name="targetMethod" value="start" /><!-- 要执行的方法名称 -->
+	</bean>
+	
+	<!-- ======================== 调度触发器 ======================== -->  
+	<bean id="runTime"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="methodInvoke" />
+		<property name="cronExpression" value="*/5 * * * * ?" />
+	</bean>
+	
+	
+	<!-- 任务线程声明 -->
+	<bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="100" />
+		<property name="queueCapacity" value="500" />
+	</bean>
+	
+	<!--设置调度 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<bean id="startQuertz" lazy-init="true" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="runTime" />
+			</list>
+		</property>
+		<property name="taskExecutor" ref="executor" />
+	</bean>
+</beans>

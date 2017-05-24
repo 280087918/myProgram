@@ -1,0 +1,96 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>spring-mvc</display-name>
+  <!-- spring项目启动的时候还是需要初始化applicationContext这个文件的，所以放一个空文件进来 -->
+  <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:/applicationContext-base.xml</param-value>
+  </context-param>
+  
+  <!--统一编码 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.sc</url-pattern>
+	</filter-mapping>
+	
+	<!-- 当url的访问路径是一样的时候，具体看filter的摆放位置去执行 -->
+	<filter>
+		<filter-name>myFilter1</filter-name>
+		<filter-class>com.john.utils.MyFilter1</filter-class>
+		<init-param>
+			<param-name>var1</param-name>
+			<param-value>a</param-value>
+		</init-param>
+		<init-param>
+			<param-name>var2</param-name>
+			<param-value>b</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter1</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>myFilter2</filter-name>
+		<filter-class>com.john.utils.MyFilter2</filter-class>
+		<init-param>
+			<param-name>var1</param-name>
+			<param-value>a</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>myFilter3</filter-name>
+		<filter-class>com.john.utils.MyFilter3</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter3</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+
+	<!-- Spring 启动 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Spring 防内存溢出 -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	
+	<!-- Spring MVC -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:/applicationContext-springmvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>*.sc</url-pattern>
+	</servlet-mapping>
+</web-app>

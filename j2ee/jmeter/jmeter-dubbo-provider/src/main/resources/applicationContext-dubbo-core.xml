@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	 http://code.alibabatech.com/schema/dubbo	http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-lazy-init="true">
+	<description>皓诚的测试服务</description>
+    <!-- 消费方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="HC-TEST" owner="Jonathan.zhang" />
+ 
+    <dubbo:registry id="serviceRegistryId" protocol="zookeeper" address="${dubbo.registry.address}"/>
+ 
+ 
+ 	<!-- 用dubbo端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="22880" dispather="all" threadpool="cached" threads="5000"/>
+	
+	<!-- 供外部调用的接口 -->
+	
+	<dubbo:service interface="com.john.api.AreaApi" ref="areaApi" loadbalance="roundrobin" protocol="dubbo" timeout="300000" retries="0" version="${dubbo.server.version}" registry="serviceRegistryId"/>
+	<bean id="areaApi" class="com.john.api.impl.AreaApiImpl" />
+	
+</beans>
