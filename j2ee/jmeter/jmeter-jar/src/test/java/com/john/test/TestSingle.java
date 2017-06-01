@@ -2,27 +2,25 @@ package com.john.test;
 
 import org.junit.Test;
 
-import com.john.MyBean;
-
 public class TestSingle {
 	@Test
 	public void test1() {
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println(MyBean.obtainBean().hashCode());
+				//System.out.println(MyBean.obtainBean().hashCode());
 			}
 		});
 		Thread t2 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println(MyBean.obtainBean().hashCode());
+				//System.out.println(MyBean.obtainBean().hashCode());
 			}
 		});
 		Thread t3 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println(MyBean.obtainBean().hashCode());
+				//System.out.println(MyBean.obtainBean().hashCode());
 			}
 		});
 		
