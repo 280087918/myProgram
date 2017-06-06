@@ -23,3 +23,4 @@ logs/
 # excel file
 *.xls
 *.xlsx
+/doc/归纳文档/~$JVM.docx
