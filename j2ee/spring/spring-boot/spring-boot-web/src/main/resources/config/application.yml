@@ -1,0 +1,6 @@
+#Attention
+#1.do not try to use tab oper
+#2.blank after ":" is needed
+
+server:
+  port: 80
