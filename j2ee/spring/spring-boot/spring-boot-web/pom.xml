@@ -28,12 +28,19 @@
 			<scope>import</scope>
 		</dependency>
 	
-		<!-- spring-boot-web工具 -->
+		<!-- spring-boot-web工具
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${spring-boot}</version>
+		</dependency> -->
+		<!-- spring-boot-freeMarker工具 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-freemarker</artifactId>
+		    <version>${spring-boot}</version>
 		</dependency>
+		
 		<!-- spring-boot开发调试工具(这个需要开启IDE项目的自动编译) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
