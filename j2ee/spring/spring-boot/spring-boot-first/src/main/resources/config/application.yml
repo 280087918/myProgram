@@ -1,0 +1,36 @@
+#Attention
+#1.do not try to use tab oper
+#2.blank after ":" is needed
+
+my:
+  servers:
+    - dev.bar.com
+    - foo.bar.com
+  name: zhanghc's system
+  user-age: 10
+  user_password: passwordforaccount
+
+server:
+  port: 80
+
+#profiles
+---
+spring:
+  profiles: dev
+mysql-url: localhost:3306
+--- 
+spring:
+  profiles: test
+mysql-url: 192.168.0.2:3306
+---
+spring:
+  profiles: prod
+mysql-url: 192.168.0.3:3306
+---
+spring:
+  profiles:
+    active: dev
+    
+#log file output
+#logging:
+#  path: logfile
