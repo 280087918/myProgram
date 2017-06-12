@@ -15,4 +15,10 @@ public class IndexController {
 		model.put("msg", "Jonathan.Chang");
 		return "welcome";
 	}
+	
+	@RequestMapping("/demoErro")
+	public String demoErro() {
+		System.out.println((1 / 0));//throw a runtimeException here
+		return "welcome";
+	}
 }
