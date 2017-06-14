@@ -21,3 +21,16 @@
 
 1.3 final修饰类
   表明不希望这个类被继承
+
+2.ArrayList集合和LinkedList集合的优点
+  ArrayList实现了长度可变的数组，在内存中分配连续的空间。遍历元素和随机访问元素的效率比较高
+  LinkedList采用链表存储方式。插入、删除元素时效率比较高
+
+3.Hashtable和HashMap的异同
+  Hashtable继承Dictionary类，HashMap实现Map接口 
+  Hashtable线程安全， HashMap线程非安全
+  Hashtable不允许null值，HashMap允许null值
+
+4.ArrayList和Vector的区别
+  Vector是线程安全的，也就是说是它的方法之间是线程同步的，而ArrayList是线程序不安全的。单线程访问用ArrayList效率要高一些，如果考虑到多线程并发的情况还是需要用Vector
+  ArrayList与Vector都有一个初始的容量大小，当存储进它们里面的元素的个数超过了容量时，就需要增加ArrayList与Vector的存储空间,Vector增加的是原来的2倍，而ArrayList是1.5倍
