@@ -4,7 +4,7 @@ http://blog.csdn.net/xuyaqun/article/details/50957254
 ======================================
 !!!这里是使用网上一般的方法haproxy去构建!!!
 
-通过erlang组建搭建rabbitmq集群
+通过erlang组件搭建rabbitmq集群
 
 本次实验在3台虚拟机上测试
 主:192.168.22.181
