@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 下拉按钮</title>
+
+    <!-- Bootstrap -->
+    <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!-- 这个是让bootstrap兼容IE8浏览器 -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="dropdown">
+	  <!-- 首先button的class前面也就是按钮的bootstrap写法，dropdown-toggle是下拉固定的写法。不用理会
+		data-toggle="dropdown"也是固定写法
+		span是倒三角形的图案
+		固定的下拉菜单是button-ul-li
+	  -->
+	  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+		Dropdown
+		<span class="caret"></span>
+	  </button>
+	  <!-- class都是固定写法，aria-labelledby里面的是button的id，证明这个下拉内容跟哪个按钮关联 -->
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		<!-- 这个li的样式代表这是个下拉的标题 -->
+		<li role="presentation" class="dropdown-header">Dropdown header</li>
+
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+
+		<!-- 在li里面放一个disabled的class意思就是不让点击 -->
+		<li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
+
+		<!-- 下拉菜单中的分割线 -->
+		<li role="presentation" class="divider"></li>
+
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+	  </ul>
+	</div>
+	
+	<!-- 这两个资源听说是最好放到页面下方，让html元素加载完了之后再渲染 -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../resources/js/jquery.1.11.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../resources/js/bootstrap.min.js"></script>
+  </body>
+</html>

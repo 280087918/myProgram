@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 按钮组</title>
+
+    <!-- Bootstrap -->
+    <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!-- 这个是让bootstrap兼容IE8浏览器 -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<!-- 这个就是一个简单的按钮组，中间连接的部分是直角的，两个侧边的挂角是圆弧的样式
+		做法就是将按钮放在一个样式为btn-group容器里面
+	-->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary">Left</button>
+	  <button type="button" class="btn btn-primary">Middle</button>
+	  <button type="button" class="btn btn-primary">Right</button>
+	</div>
+
+	<hr />
+    <!-- 按钮工具栏，将按钮组的纬度去分开展示
+		具体的用法就是在按钮组外面在加一层样式为btn-toolbar、角色为toolbar的容器中
+		这里按钮组后面加了个样式btn-group-lg就是想说明按钮组也可以设定大小
+			具体有参数:btn-group-lg,btn-group-sm,btn-group-xs
+	-->
+	<div class="btn-toolbar" role="toolbar">
+		<div class="btn-group btn-group-lg">
+		  <button type="button" class="btn btn-primary">1</button>
+		  <button type="button" class="btn btn-primary">2</button>
+		  <button type="button" class="btn btn-primary">3</button>
+		</div>
+		<div class="btn-group">
+		  <button type="button" class="btn btn-primary">1</button>
+		  <button type="button" class="btn btn-primary">2</button>
+		</div>
+	</div>
+
+	<hr />
+	<!-- 按钮组嵌套下拉菜单
+		用法就是在按钮组下面再加一个按钮组，里面是放下拉按钮的组合
+	-->
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary">1</button>
+		<button type="button" class="btn btn-primary">2</button>
+
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			  Dropdown
+			  <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+			  <li><a href="#">Dropdown link</a></li>
+			  <li><a href="#">Dropdown link</a></li>
+			</ul>
+	    </div>
+    </div>
+
+	<hr />
+	<!-- 垂直排列
+		跟上面差别不大，只是分组容器的class换成垂直的样式就可以了
+	-->
+	<div class="btn-group-vertical">
+		<button type="button" class="btn btn-primary">1</button>
+		<button type="button" class="btn btn-primary">2</button>
+
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			  Dropdown
+			  <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+			  <li><a href="#">Dropdown link</a></li>
+			  <li><a href="#">Dropdown link</a></li>
+			</ul>
+	    </div>
+    </div>
+
+	<hr />
+	<!-- 两端对齐按钮组
+		多加一个btn-group-justified的样式就可以了
+		貌似是跟最外层容器对齐，如果没有容器，那就是跟页面左右侧对齐
+	-->
+	<div class="btn-group btn-group-justified">
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary">Left</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary">Middle</button>
+        </div>
+		<div class="btn-group">
+		    <button type="button" class="btn btn-primary">Right</button>
+		</div>
+	</div>
+
+
+	<!-- 这两个资源听说是最好放到页面下方，让html元素加载完了之后再渲染 -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../resources/js/jquery.1.11.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../resources/js/bootstrap.min.js"></script>
+  </body>
+</html>
